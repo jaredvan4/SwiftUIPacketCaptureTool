@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F047F4026FA5C81001E7276 /* NetworkInterfaceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F047F3F26FA5C81001E7276 /* NetworkInterfaceDetailsView.swift */; };
 		7F49994F26F51D81002DB095 /* SeniorProjApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49994E26F51D81002DB095 /* SeniorProjApp.swift */; };
 		7F49995126F51D81002DB095 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49995026F51D81002DB095 /* MainView.swift */; };
 		7F49995326F51D82002DB095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F49995226F51D82002DB095 /* Assets.xcassets */; };
@@ -14,8 +15,9 @@
 		7F49996226F51D82002DB095 /* SeniorProjTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49996126F51D82002DB095 /* SeniorProjTests.swift */; };
 		7F49996D26F51D82002DB095 /* SeniorProjUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49996C26F51D82002DB095 /* SeniorProjUITests.swift */; };
 		7F49997D26F53277002DB095 /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49997C26F53277002DB095 /* NetworkInterface.swift */; };
+		7F8E3B6C26F98EC400D68A86 /* PcapMainClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6A26F98EC400D68A86 /* PcapMainClass.cpp */; };
+		7F8E3B7026F992CE00D68A86 /* PcapMainClassWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6F26F992CE00D68A86 /* PcapMainClassWrapper.mm */; };
 		7FE8F44726F58194005BC7B6 /* NetworkInterfaceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */; };
-		7FE8F44B26F5834F005BC7B6 /* PcapPlusPlusMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FE8F44926F5834F005BC7B6 /* PcapPlusPlusMain.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F047F3F26FA5C81001E7276 /* NetworkInterfaceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterfaceDetailsView.swift; sourceTree = "<group>"; };
 		7F49994B26F51D81002DB095 /* SeniorProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F49994E26F51D81002DB095 /* SeniorProjApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjApp.swift; sourceTree = "<group>"; };
 		7F49995026F51D81002DB095 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -50,10 +53,12 @@
 		7F49996C26F51D82002DB095 /* SeniorProjUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjUITests.swift; sourceTree = "<group>"; };
 		7F49996E26F51D82002DB095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F49997C26F53277002DB095 /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
+		7F8E3B6126F9884B00D68A86 /* SeniorProj-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SeniorProj-Bridging-Header.h"; sourceTree = "<group>"; };
+		7F8E3B6A26F98EC400D68A86 /* PcapMainClass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PcapMainClass.cpp; sourceTree = "<group>"; };
+		7F8E3B6B26F98EC400D68A86 /* PcapMainClass.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapMainClass.hpp; sourceTree = "<group>"; };
+		7F8E3B6E26F9923A00D68A86 /* PcapMainClassWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PcapMainClassWrapper.h; sourceTree = "<group>"; };
+		7F8E3B6F26F992CE00D68A86 /* PcapMainClassWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PcapMainClassWrapper.mm; sourceTree = "<group>"; };
 		7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterfaceSelectorView.swift; sourceTree = "<group>"; };
-		7FE8F44826F5834E005BC7B6 /* SeniorProj-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SeniorProj-Bridging-Header.h"; sourceTree = "<group>"; };
-		7FE8F44926F5834F005BC7B6 /* PcapPlusPlusMain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PcapPlusPlusMain.cpp; sourceTree = "<group>"; };
-		7FE8F44A26F5834F005BC7B6 /* PcapPlusPlusMain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapPlusPlusMain.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +86,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F047F4126FA5DA4001E7276 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7F49995026F51D81002DB095 /* MainView.swift */,
+				7F047F3F26FA5C81001E7276 /* NetworkInterfaceDetailsView.swift */,
+				7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		7F49994226F51D81002DB095 = {
 			isa = PBXGroup;
 			children = (
@@ -104,16 +119,14 @@
 		7F49994D26F51D81002DB095 /* SeniorProj */ = {
 			isa = PBXGroup;
 			children = (
+				7F047F4126FA5DA4001E7276 /* Views */,
+				7F8E3B6926F98DD400D68A86 /* PcapPlusPlusStuff */,
 				7F49994E26F51D81002DB095 /* SeniorProjApp.swift */,
-				7F49995026F51D81002DB095 /* MainView.swift */,
-				7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */,
 				7F49997C26F53277002DB095 /* NetworkInterface.swift */,
 				7F49995226F51D82002DB095 /* Assets.xcassets */,
-				7FE8F44C26F584DA005BC7B6 /* PcapStuff */,
 				7F49995726F51D82002DB095 /* Info.plist */,
 				7F49995826F51D82002DB095 /* SeniorProj.entitlements */,
 				7F49995426F51D82002DB095 /* Preview Content */,
-				7FE8F44826F5834E005BC7B6 /* SeniorProj-Bridging-Header.h */,
 			);
 			path = SeniorProj;
 			sourceTree = "<group>";
@@ -144,13 +157,16 @@
 			path = SeniorProjUITests;
 			sourceTree = "<group>";
 		};
-		7FE8F44C26F584DA005BC7B6 /* PcapStuff */ = {
+		7F8E3B6926F98DD400D68A86 /* PcapPlusPlusStuff */ = {
 			isa = PBXGroup;
 			children = (
-				7FE8F44926F5834F005BC7B6 /* PcapPlusPlusMain.cpp */,
-				7FE8F44A26F5834F005BC7B6 /* PcapPlusPlusMain.hpp */,
+				7F8E3B6126F9884B00D68A86 /* SeniorProj-Bridging-Header.h */,
+				7F8E3B6A26F98EC400D68A86 /* PcapMainClass.cpp */,
+				7F8E3B6B26F98EC400D68A86 /* PcapMainClass.hpp */,
+				7F8E3B6E26F9923A00D68A86 /* PcapMainClassWrapper.h */,
+				7F8E3B6F26F992CE00D68A86 /* PcapMainClassWrapper.mm */,
 			);
-			path = PcapStuff;
+			path = PcapPlusPlusStuff;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,9 +300,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FE8F44726F58194005BC7B6 /* NetworkInterfaceSelectorView.swift in Sources */,
+				7F8E3B6C26F98EC400D68A86 /* PcapMainClass.cpp in Sources */,
 				7F49997D26F53277002DB095 /* NetworkInterface.swift in Sources */,
-				7FE8F44B26F5834F005BC7B6 /* PcapPlusPlusMain.cpp in Sources */,
+				7F8E3B7026F992CE00D68A86 /* PcapMainClassWrapper.mm in Sources */,
 				7F49995126F51D81002DB095 /* MainView.swift in Sources */,
+				7F047F4026FA5C81001E7276 /* NetworkInterfaceDetailsView.swift in Sources */,
 				7F49994F26F51D81002DB095 /* SeniorProjApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +467,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SeniorProj/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = SeniorProj/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -457,7 +476,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = comdas.SeniorProj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProj/SeniorProj-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProj/PcapPlusPlusStuff/SeniorProj-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -474,6 +495,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SeniorProj/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = SeniorProj/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -482,7 +504,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = comdas.SeniorProj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProj/SeniorProj-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProj/PcapPlusPlusStuff/SeniorProj-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

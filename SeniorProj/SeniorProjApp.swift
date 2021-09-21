@@ -13,5 +13,6 @@ struct SeniorProjApp: App {
         WindowGroup {
             MainView()
         }
+    
     }
 }
