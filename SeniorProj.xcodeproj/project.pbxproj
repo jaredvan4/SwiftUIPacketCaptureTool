@@ -17,6 +17,11 @@
 		7F49997D26F53277002DB095 /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49997C26F53277002DB095 /* NetworkInterface.swift */; };
 		7F8E3B6C26F98EC400D68A86 /* PcapMainClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6A26F98EC400D68A86 /* PcapMainClass.cpp */; };
 		7F8E3B7026F992CE00D68A86 /* PcapMainClassWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6F26F992CE00D68A86 /* PcapMainClassWrapper.mm */; };
+		7FAA24D9270A99A500324BD2 /* libCommon++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24D6270A99A500324BD2 /* libCommon++.a */; };
+		7FAA24DA270A99A500324BD2 /* libPacket++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24D7270A99A500324BD2 /* libPacket++.a */; };
+		7FAA24DB270A99A500324BD2 /* libPcap++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24D8270A99A500324BD2 /* libPcap++.a */; };
+		7FAC094E270B66F0004754B2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24DC270A9FC100324BD2 /* CoreFoundation.framework */; };
+		7FAC0950270B66FB004754B2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAC094F270B66FB004754B2 /* SystemConfiguration.framework */; };
 		7FE8F44726F58194005BC7B6 /* NetworkInterfaceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +41,18 @@
 			remoteInfo = SeniorProj;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7FA1F1FD26FCD55A00586D61 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7F047F3F26FA5C81001E7276 /* NetworkInterfaceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterfaceDetailsView.swift; sourceTree = "<group>"; };
@@ -58,6 +75,13 @@
 		7F8E3B6B26F98EC400D68A86 /* PcapMainClass.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapMainClass.hpp; sourceTree = "<group>"; };
 		7F8E3B6E26F9923A00D68A86 /* PcapMainClassWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PcapMainClassWrapper.h; sourceTree = "<group>"; };
 		7F8E3B6F26F992CE00D68A86 /* PcapMainClassWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PcapMainClassWrapper.mm; sourceTree = "<group>"; };
+		7F99298E270B4BA5007FC1F0 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = ../../../../../usr/local/lib; sourceTree = "<group>"; };
+		7FA1F1FF26FCD55A00586D61 /* PcapSeniorProjDependency */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PcapSeniorProjDependency; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FAA24D6270A99A500324BD2 /* libCommon++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCommon++.a"; path = "../../../../../usr/local/lib/libCommon++.a"; sourceTree = "<group>"; };
+		7FAA24D7270A99A500324BD2 /* libPacket++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPacket++.a"; path = "../../../../../usr/local/lib/libPacket++.a"; sourceTree = "<group>"; };
+		7FAA24D8270A99A500324BD2 /* libPcap++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPcap++.a"; path = "../../../../../usr/local/lib/libPcap++.a"; sourceTree = "<group>"; };
+		7FAA24DC270A9FC100324BD2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		7FAC094F270B66FB004754B2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterfaceSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +90,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FAC0950270B66FB004754B2 /* SystemConfiguration.framework in Frameworks */,
+				7FAC094E270B66F0004754B2 /* CoreFoundation.framework in Frameworks */,
+				7FAA24D9270A99A500324BD2 /* libCommon++.a in Frameworks */,
+				7FAA24DA270A99A500324BD2 /* libPacket++.a in Frameworks */,
+				7FAA24DB270A99A500324BD2 /* libPcap++.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +106,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7F49996526F51D82002DB095 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FA1F1FC26FCD55A00586D61 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -103,6 +139,7 @@
 				7F49996026F51D82002DB095 /* SeniorProjTests */,
 				7F49996B26F51D82002DB095 /* SeniorProjUITests */,
 				7F49994C26F51D81002DB095 /* Products */,
+				7FAA24D5270A99A500324BD2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +149,7 @@
 				7F49994B26F51D81002DB095 /* SeniorProj.app */,
 				7F49995D26F51D82002DB095 /* SeniorProjTests.xctest */,
 				7F49996826F51D82002DB095 /* SeniorProjUITests.xctest */,
+				7FA1F1FF26FCD55A00586D61 /* PcapSeniorProjDependency */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +205,19 @@
 				7F8E3B6F26F992CE00D68A86 /* PcapMainClassWrapper.mm */,
 			);
 			path = PcapPlusPlusStuff;
+			sourceTree = "<group>";
+		};
+		7FAA24D5270A99A500324BD2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FAC094F270B66FB004754B2 /* SystemConfiguration.framework */,
+				7F99298E270B4BA5007FC1F0 /* lib */,
+				7FAA24DC270A9FC100324BD2 /* CoreFoundation.framework */,
+				7FAA24D6270A99A500324BD2 /* libCommon++.a */,
+				7FAA24D7270A99A500324BD2 /* libPacket++.a */,
+				7FAA24D8270A99A500324BD2 /* libPcap++.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +276,23 @@
 			productReference = 7F49996826F51D82002DB095 /* SeniorProjUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		7FA1F1FE26FCD55A00586D61 /* PcapSeniorProjDependency */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FA1F20526FCD55A00586D61 /* Build configuration list for PBXNativeTarget "PcapSeniorProjDependency" */;
+			buildPhases = (
+				7FA1F1FB26FCD55A00586D61 /* Sources */,
+				7FA1F1FC26FCD55A00586D61 /* Frameworks */,
+				7FA1F1FD26FCD55A00586D61 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PcapSeniorProjDependency;
+			productName = PcapSeniorProjDependency;
+			productReference = 7FA1F1FF26FCD55A00586D61 /* PcapSeniorProjDependency */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -246,6 +314,9 @@
 						CreatedOnToolsVersion = 12.5.1;
 						TestTargetID = 7F49994A26F51D81002DB095;
 					};
+					7FA1F1FE26FCD55A00586D61 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
 				};
 			};
 			buildConfigurationList = 7F49994626F51D81002DB095 /* Build configuration list for PBXProject "SeniorProj" */;
@@ -264,6 +335,7 @@
 				7F49994A26F51D81002DB095 /* SeniorProj */,
 				7F49995C26F51D82002DB095 /* SeniorProjTests */,
 				7F49996726F51D82002DB095 /* SeniorProjUITests */,
+				7FA1F1FE26FCD55A00586D61 /* PcapSeniorProjDependency */,
 			);
 		};
 /* End PBXProject section */
@@ -322,6 +394,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F49996D26F51D82002DB095 /* SeniorProjUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FA1F1FB26FCD55A00586D61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,10 +471,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include/pcapplusplus;
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[arch=*]" = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -447,9 +529,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include/pcapplusplus;
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[arch=*]" = "";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -467,13 +552,21 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SeniorProj/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				HEADER_SEARCH_PATHS = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include/pcapplusplus;
 				INFOPLIST_FILE = SeniorProj/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				"OTHER_CPLUSPLUSFLAGS[arch=*]" = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = (
+					"-L/usr/local/lib",
+					"-lpcap",
+					"-lpthread",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = comdas.SeniorProj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProj/PcapPlusPlusStuff/SeniorProj-Bridging-Header.h";
@@ -495,13 +588,27 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SeniorProj/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				HEADER_SEARCH_PATHS = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include/pcapplusplus;
 				INFOPLIST_FILE = SeniorProj/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = (
+					"-L/usr/local/lib",
+					"-lpcap",
+					"-lpthread",
+					"$(inherited)",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-L/usr/local/lib",
+					"-lpcap",
+					"-lpthread",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = comdas.SeniorProj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProj/PcapPlusPlusStuff/SeniorProj-Bridging-Header.h";
@@ -590,6 +697,24 @@
 			};
 			name = Release;
 		};
+		7FA1F20326FCD55A00586D61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GCC_NO_COMMON_BLOCKS = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7FA1F20426FCD55A00586D61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GCC_NO_COMMON_BLOCKS = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -625,6 +750,15 @@
 			buildConfigurations = (
 				7F49997826F51D82002DB095 /* Debug */,
 				7F49997926F51D82002DB095 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7FA1F20526FCD55A00586D61 /* Build configuration list for PBXNativeTarget "PcapSeniorProjDependency" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FA1F20326FCD55A00586D61 /* Debug */,
+				7FA1F20426FCD55A00586D61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

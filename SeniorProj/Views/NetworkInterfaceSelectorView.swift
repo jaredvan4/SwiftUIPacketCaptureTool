@@ -15,7 +15,7 @@ struct NetworkInterfaceSelectorView : View {
                 Text("Devices").font(.largeTitle)
                 ForEach (devices.indices) { index in
                     HStack{
-                        Circle().fill(devices[index].status == true ? Color.green : Color.red).frame(width: 15, height: 15)
+                        Circle().fill(devices[index].status == true ? Color.green : Color.red).frame(width: 15, height: 15).help(devices[index].status == true ? "Device available" : "Device offline")
                         Divider()
                         VStack {
                             NavigationLink(
@@ -23,7 +23,6 @@ struct NetworkInterfaceSelectorView : View {
                                 label: {
                                 }).disabled(!devices[index].status!)
                             Text(devices[index].deviceName!)
-                            Text(devices[index].iPv4Address!)
                             
                         }.accentColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/) //vstack ends here
                     }

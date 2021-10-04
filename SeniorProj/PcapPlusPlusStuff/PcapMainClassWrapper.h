@@ -8,4 +8,5 @@
 
 - (int) getNum;
 //- (NSArray *) getDevices;
+- (void) doThing;
 @end

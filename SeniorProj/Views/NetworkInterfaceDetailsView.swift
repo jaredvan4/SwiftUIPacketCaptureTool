@@ -11,6 +11,7 @@ struct NetworkInterfaceDetailsView: View {
     let device : NetworkInterface
     var body: some View {
         VStack{
+            Text("Name: " + device.deviceName!)
             Text("IPv4 address: " + device.iPv4Address!)
         }
     }

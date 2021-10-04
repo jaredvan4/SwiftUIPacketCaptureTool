@@ -12,4 +12,5 @@ class PcapMainClass {
 public:
     int getNum();
     std::vector<int> getDevices();
+    void doThing();
 };

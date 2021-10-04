@@ -20,5 +20,10 @@
 //    PcapMainClass pcapInstance;
 //    NSArray devices = pcapInstance.getDevices();
 //}
+- (void) doThing {
+    PcapMainClass pcapClass;
+    pcapClass.doThing();
+
+}
 @end
 
