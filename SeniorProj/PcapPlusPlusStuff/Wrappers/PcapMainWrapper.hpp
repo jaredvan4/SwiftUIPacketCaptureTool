@@ -4,9 +4,12 @@
 //
 //  Created by Jared on 9/21/21.
 #import <Foundation/Foundation.h>
-@interface PcapMainClassWrapper : NSObject
 
-- (int) getNum;
-//- (NSArray *) getDevices;
-- (void) doThing;
+@interface PcapMainWrapper : NSObject {
+    
+}
+
+- (NSMutableArray *) getDevices;
+
+
 @end

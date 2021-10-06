@@ -15,8 +15,9 @@
 		7F49996226F51D82002DB095 /* SeniorProjTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49996126F51D82002DB095 /* SeniorProjTests.swift */; };
 		7F49996D26F51D82002DB095 /* SeniorProjUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49996C26F51D82002DB095 /* SeniorProjUITests.swift */; };
 		7F49997D26F53277002DB095 /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49997C26F53277002DB095 /* NetworkInterface.swift */; };
-		7F8E3B6C26F98EC400D68A86 /* PcapMainClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6A26F98EC400D68A86 /* PcapMainClass.cpp */; };
-		7F8E3B7026F992CE00D68A86 /* PcapMainClassWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6F26F992CE00D68A86 /* PcapMainClassWrapper.mm */; };
+		7F733A6C270CE9DA00AD1B03 /* PcapCppDevWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F733A6B270CE9DA00AD1B03 /* PcapCppDevWrapper.mm */; };
+		7F8E3B6C26F98EC400D68A86 /* PcapMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6A26F98EC400D68A86 /* PcapMain.cpp */; };
+		7F8E3B7026F992CE00D68A86 /* PcapMainWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6F26F992CE00D68A86 /* PcapMainWrapper.mm */; };
 		7FAA24D9270A99A500324BD2 /* libCommon++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24D6270A99A500324BD2 /* libCommon++.a */; };
 		7FAA24DA270A99A500324BD2 /* libPacket++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24D7270A99A500324BD2 /* libPacket++.a */; };
 		7FAA24DB270A99A500324BD2 /* libPcap++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24D8270A99A500324BD2 /* libPcap++.a */; };
@@ -70,11 +71,13 @@
 		7F49996C26F51D82002DB095 /* SeniorProjUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjUITests.swift; sourceTree = "<group>"; };
 		7F49996E26F51D82002DB095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F49997C26F53277002DB095 /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
+		7F733A6A270CE97800AD1B03 /* PcapCppDevWrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapCppDevWrapper.hpp; sourceTree = "<group>"; };
+		7F733A6B270CE9DA00AD1B03 /* PcapCppDevWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PcapCppDevWrapper.mm; sourceTree = "<group>"; };
 		7F8E3B6126F9884B00D68A86 /* SeniorProj-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SeniorProj-Bridging-Header.h"; sourceTree = "<group>"; };
-		7F8E3B6A26F98EC400D68A86 /* PcapMainClass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PcapMainClass.cpp; sourceTree = "<group>"; };
-		7F8E3B6B26F98EC400D68A86 /* PcapMainClass.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapMainClass.hpp; sourceTree = "<group>"; };
-		7F8E3B6E26F9923A00D68A86 /* PcapMainClassWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PcapMainClassWrapper.h; sourceTree = "<group>"; };
-		7F8E3B6F26F992CE00D68A86 /* PcapMainClassWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PcapMainClassWrapper.mm; sourceTree = "<group>"; };
+		7F8E3B6A26F98EC400D68A86 /* PcapMain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PcapMain.cpp; sourceTree = "<group>"; };
+		7F8E3B6B26F98EC400D68A86 /* PcapMain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapMain.hpp; sourceTree = "<group>"; };
+		7F8E3B6E26F9923A00D68A86 /* PcapMainWrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapMainWrapper.hpp; sourceTree = "<group>"; };
+		7F8E3B6F26F992CE00D68A86 /* PcapMainWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PcapMainWrapper.mm; sourceTree = "<group>"; };
 		7F99298E270B4BA5007FC1F0 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = ../../../../../usr/local/lib; sourceTree = "<group>"; };
 		7FA1F1FF26FCD55A00586D61 /* PcapSeniorProjDependency */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PcapSeniorProjDependency; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FAA24D6270A99A500324BD2 /* libCommon++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCommon++.a"; path = "../../../../../usr/local/lib/libCommon++.a"; sourceTree = "<group>"; };
@@ -195,14 +198,24 @@
 			path = SeniorProjUITests;
 			sourceTree = "<group>";
 		};
+		7F733A6D270CED5E00AD1B03 /* Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				7F733A6B270CE9DA00AD1B03 /* PcapCppDevWrapper.mm */,
+				7F733A6A270CE97800AD1B03 /* PcapCppDevWrapper.hpp */,
+				7F8E3B6F26F992CE00D68A86 /* PcapMainWrapper.mm */,
+				7F8E3B6E26F9923A00D68A86 /* PcapMainWrapper.hpp */,
+			);
+			path = Wrappers;
+			sourceTree = "<group>";
+		};
 		7F8E3B6926F98DD400D68A86 /* PcapPlusPlusStuff */ = {
 			isa = PBXGroup;
 			children = (
+				7F733A6D270CED5E00AD1B03 /* Wrappers */,
 				7F8E3B6126F9884B00D68A86 /* SeniorProj-Bridging-Header.h */,
-				7F8E3B6A26F98EC400D68A86 /* PcapMainClass.cpp */,
-				7F8E3B6B26F98EC400D68A86 /* PcapMainClass.hpp */,
-				7F8E3B6E26F9923A00D68A86 /* PcapMainClassWrapper.h */,
-				7F8E3B6F26F992CE00D68A86 /* PcapMainClassWrapper.mm */,
+				7F8E3B6A26F98EC400D68A86 /* PcapMain.cpp */,
+				7F8E3B6B26F98EC400D68A86 /* PcapMain.hpp */,
 			);
 			path = PcapPlusPlusStuff;
 			sourceTree = "<group>";
@@ -372,11 +385,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FE8F44726F58194005BC7B6 /* NetworkInterfaceSelectorView.swift in Sources */,
-				7F8E3B6C26F98EC400D68A86 /* PcapMainClass.cpp in Sources */,
+				7F8E3B6C26F98EC400D68A86 /* PcapMain.cpp in Sources */,
 				7F49997D26F53277002DB095 /* NetworkInterface.swift in Sources */,
-				7F8E3B7026F992CE00D68A86 /* PcapMainClassWrapper.mm in Sources */,
+				7F8E3B7026F992CE00D68A86 /* PcapMainWrapper.mm in Sources */,
 				7F49995126F51D81002DB095 /* MainView.swift in Sources */,
 				7F047F4026FA5C81001E7276 /* NetworkInterfaceDetailsView.swift in Sources */,
+				7F733A6C270CE9DA00AD1B03 /* PcapCppDevWrapper.mm in Sources */,
 				7F49994F26F51D81002DB095 /* SeniorProjApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

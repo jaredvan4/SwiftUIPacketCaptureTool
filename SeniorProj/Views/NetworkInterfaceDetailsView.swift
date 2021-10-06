@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct NetworkInterfaceDetailsView: View {
-    let device : NetworkInterface
+    let device : PcapCppDevWrapper
     var body: some View {
-        VStack{
-            Text("Name: " + device.deviceName!)
-            Text("IPv4 address: " + device.iPv4Address!)
+        VStack {
+            Text( "Description!" + device.getDevDescription()).bold()
+            Text("Name: " + device.getName())
+            Text("IPv4 address: " + device.getIPv4Address())
         }
     }
 }

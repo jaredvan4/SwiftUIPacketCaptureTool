@@ -8,9 +8,10 @@
 #include <time.h>
 #include <stdlib.h>
 #include <vector>
-class PcapMainClass {
+#include "PcapLiveDeviceList.h"
+#include "SystemUtils.h"
+class PcapMain {
+    
 public:
-    int getNum();
-    std::vector<int> getDevices();
-    void doThing();
+    std::vector<pcpp::PcapLiveDevice*> getDevices();
 };
