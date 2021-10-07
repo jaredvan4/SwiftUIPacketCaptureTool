@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+//TODO: Make this a searchable collection of Devices?
 
 struct NetworkInterfaceSelectorView : View {
+    @State private var searchQuery = ""
     let devices : [PcapCppDevWrapper]
     var body: some View {
         NavigationView {
+            
             List {
                 Text("Live Devices").font(.largeTitle)
                 ForEach (devices.indices) { index in
@@ -20,14 +23,15 @@ struct NetworkInterfaceSelectorView : View {
                             NavigationLink(
                                 destination: NetworkInterfaceDetailsView(device: devices[index]),
                                 label: {
+                                    Text(devices[index].getName())
                                 })
-                            Text(devices[index].getName())
-                            
+
                         }.accentColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/) //vstack ends here
                     }
-                    
                 }
             }
         }.navigationTitle(Text("Senior Project"))
     }
 }
+
+

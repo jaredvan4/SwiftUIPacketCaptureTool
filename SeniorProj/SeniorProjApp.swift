@@ -9,10 +9,11 @@ import SwiftUI
 
 @main
 struct SeniorProjApp: App {
+    var mainPcap: PcapMainWrapper = PcapMainWrapper()
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(pcapMain: mainPcap)
         }
-    
+        
     }
 }

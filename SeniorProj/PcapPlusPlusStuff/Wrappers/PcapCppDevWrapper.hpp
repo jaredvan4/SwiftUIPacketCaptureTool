@@ -16,4 +16,6 @@
 - (NSString *) getName;
 - (NSString *) getIPv4Address;
 - (NSString *) getDevDescription;
+- (NSString *) getMacAddress;
+- (Boolean) openDev;
 @end

@@ -14,6 +14,18 @@ struct NetworkInterfaceDetailsView: View {
             Text( "Description!" + device.getDevDescription()).bold()
             Text("Name: " + device.getName())
             Text("IPv4 address: " + device.getIPv4Address())
+            Text("Mac Address: " + device.getMacAddress())
+            Button(action: {openDevice()}) {
+                Text("Open Device")
+            }
+        
+        }
+    }
+    //TODO: Fix alert to work properly
+    func openDevice() -> Void {
+        let openedSuccessfully :Bool = device.openDev()
+        if (!openedSuccessfully) {
+            Alert(title: Text("Attempting to open device"), message: Text("Failed to open device :("),primaryButton: .destructive(Text("Ok")),secondaryButton:.cancel() )
         }
     }
 }
