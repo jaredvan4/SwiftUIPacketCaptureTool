@@ -3,3 +3,4 @@
 //
 #import "PcapMainWrapper.hpp"
 #import "PcapCppDevWrapper.hpp"
+#import "PcapCppPacketWrapper.hpp"

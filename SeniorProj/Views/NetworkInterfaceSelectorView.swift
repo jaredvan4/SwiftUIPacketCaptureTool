@@ -26,11 +26,11 @@ struct NetworkInterfaceSelectorView : View {
                                     Text(devices[index].getName())
                                 })
 
-                        }.accentColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/) //vstack ends here
+                        }.accentColor(.blue) //vstack ends here
                     }
                 }
             }
-        }.navigationTitle(Text("Senior Project"))
+        }.navigationTitle(Text("network selector"))
     }
 }
 

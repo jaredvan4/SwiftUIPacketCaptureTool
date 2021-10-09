@@ -11,7 +11,6 @@ struct MainView: View {
     var pcapMainInstance : PcapMainWrapper
     var devicesArray : [PcapCppDevWrapper]
     var body: some View {
-        Text("Live devices")
         VSplitView {
             NetworkInterfaceSelectorView(devices:devicesArray)
         }.frame(minWidth: 600, minHeight: 400).frame(width: nil)

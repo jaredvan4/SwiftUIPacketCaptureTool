@@ -12,5 +12,3 @@ std::vector<pcpp::PcapLiveDevice*> PcapMain::getDevices() {
     return devices;
     
 }
-
-

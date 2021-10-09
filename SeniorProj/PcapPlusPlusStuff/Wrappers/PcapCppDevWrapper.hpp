@@ -9,6 +9,7 @@
 
 @interface PcapCppDevWrapper : NSObject {
     void* dev;
+    bool captureActive;
 }
 
 - (id) initWithDev:(void *) aDev;
@@ -18,4 +19,7 @@
 - (NSString *) getDevDescription;
 - (NSString *) getMacAddress;
 - (Boolean) openDev;
+- (void) startCapture;
+- (void) closeDev;
+- (void) stopCapture;
 @end
