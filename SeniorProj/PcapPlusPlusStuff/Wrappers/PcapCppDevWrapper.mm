@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "PcapCppDevWrapper.hpp"
 #import "PcapLiveDevice.h"
-
+#include <thread>
 
 @implementation PcapCppDevWrapper
 
@@ -61,28 +61,69 @@
 //TODO: Fix below to be asynchronous ( <--- spelled wrong) , at the moment it just sleeps to allow capture to occur
 
 - (void) startCapture {
-    pcpp::RawPacketVector packetVector;
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
-    if (tempDev->isOpened()) {
-        tempDev->startCapture(packetVector);
-        sleep(4);
-        tempDev->stopCapture();
-        for (pcpp::RawPacket *packet : packetVector) {
-            pcpp::Packet aPacket = packet;
-            printf("len of packet data: %u\n", packet->getRawDataLen());
-        }
-        tempDev->close();
-    }
+//    tempDev->startCapture([self onPacketArrives],&tempDev);
+    [self performSelectorInBackground:@selector(lessThanIdealAsyncCapture) withObject:nil];
+    return;
+//    pcpp::RawPacketVector packetVector;
+//    tempDev->startCapture(packetVector);
+//    pcpp::multiPlatformSleep(6);
+//    tempDev->stopCapture();
+//    for (pcpp::RawPacket *packet : packetVector) {
+//                pcpp::Packet aPacket = packet;
+//                printf("len of packet data: %u\n", packet->getRawDataLen());
+//            }
+//    tempDev->close();
+//    tempDev->startCapture([self onPacketArrive], void *onPacketArrivesUserCookie);
+    //    pcpp::RawPacketVector packetVector;
+//    if (tempDev->isOpened()) {
+//        tempDev->startCapture(packetVector);
+//        sleep(4);
+//        tempDev->stopCapture();
+//        for (pcpp::RawPacket *packet : packetVector) {
+//            pcpp::Packet aPacket = packet;
+//            printf("len of packet data: %u\n", packet->getRawDataLen());
+//        }
+//        tempDev->close();
+//    }
+    
+}
+- (void) onPacketArrives {
     
 }
 
 - (void) stopCapture {
-    self->captureActive = false;
+    captureActive = false;
 }
 
 - (void) closeDev {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     tempDev->close();
 }
+
+- (void) onPacketArrive : (void*) packetArrived : (void*) pcapLiveDev : (void *)cookie {
+    pcpp::Packet parsedPacket ((pcpp::RawPacket*) packetArrived);
+}
+//TODO: use async callback, high cpu usage
+- (void) lessThanIdealAsyncCapture {
+    pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
+    pcpp::RawPacketVector packetVector;
+    tempDev->startCapture(packetVector);
+    captureActive = true;
+    while (captureActive) {
+        //wait for user to end capture
+    }
+    tempDev->stopCapture();
+    packetArray = [NSMutableArray arrayWithCapacity:packetVector.size()];
+    for (pcpp::RawPacket *packet : packetVector) {
+        PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithInt:packet->getRawDataLen()];
+        [packetArray addObject:newPacketWrapper];
+    }
+}
+
+- (NSMutableArray<PcapCppPacketWrappper*>*) getPacketArray {
+    return packetArray;
+}
+
 @end
 

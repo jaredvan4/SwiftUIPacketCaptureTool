@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 @interface PcapCppPacketWrappper : NSObject {
-    
+    NSInteger length;
 }
-
+- (id) initWithInt: (NSInteger) packetLength;
+- (NSInteger) getLength;
 @end

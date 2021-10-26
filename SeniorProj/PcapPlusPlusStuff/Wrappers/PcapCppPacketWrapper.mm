@@ -9,6 +9,14 @@
 
 @implementation PcapCppPacketWrappper
 
-
+- (id) initWithInt: (NSInteger) packetLength {
+    if (self) {
+        length = packetLength;
+    }
+    return self;
+}
+- (NSInteger) getLength {
+    return length;
+}
 
 @end
