@@ -20,11 +20,13 @@
 		7F733A6C270CE9DA00AD1B03 /* PcapCppDevWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F733A6B270CE9DA00AD1B03 /* PcapCppDevWrapper.mm */; };
 		7F8E3B6C26F98EC400D68A86 /* PcapMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6A26F98EC400D68A86 /* PcapMain.cpp */; };
 		7F8E3B7026F992CE00D68A86 /* PcapMainWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6F26F992CE00D68A86 /* PcapMainWrapper.mm */; };
+		7F9E028B2729F97300616F38 /* CaptureWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9E028A2729F97300616F38 /* CaptureWindowView.swift */; };
 		7FAA24D9270A99A500324BD2 /* libCommon++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24D6270A99A500324BD2 /* libCommon++.a */; };
 		7FAA24DA270A99A500324BD2 /* libPacket++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24D7270A99A500324BD2 /* libPacket++.a */; };
 		7FAA24DB270A99A500324BD2 /* libPcap++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24D8270A99A500324BD2 /* libPcap++.a */; };
 		7FAC094E270B66F0004754B2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24DC270A9FC100324BD2 /* CoreFoundation.framework */; };
 		7FAC0950270B66FB004754B2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAC094F270B66FB004754B2 /* SystemConfiguration.framework */; };
+		7FCFF7A0272A3B88009829A0 /* PcapThreadCaptureHolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FCFF79E272A3B88009829A0 /* PcapThreadCaptureHolder.cpp */; };
 		7FE8F44726F58194005BC7B6 /* NetworkInterfaceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */; };
 		7FF4259D2711185E00210F28 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF4259C2711185E00210F28 /* CaptureView.swift */; };
 /* End PBXBuildFile section */
@@ -85,12 +87,15 @@
 		7F8E3B6E26F9923A00D68A86 /* PcapMainWrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapMainWrapper.hpp; sourceTree = "<group>"; };
 		7F8E3B6F26F992CE00D68A86 /* PcapMainWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PcapMainWrapper.mm; sourceTree = "<group>"; };
 		7F99298E270B4BA5007FC1F0 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = ../../../../../usr/local/lib; sourceTree = "<group>"; };
+		7F9E028A2729F97300616F38 /* CaptureWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureWindowView.swift; sourceTree = "<group>"; };
 		7FA1F1FF26FCD55A00586D61 /* PcapSeniorProjDependency */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PcapSeniorProjDependency; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FAA24D6270A99A500324BD2 /* libCommon++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCommon++.a"; path = "../../../../../usr/local/lib/libCommon++.a"; sourceTree = "<group>"; };
 		7FAA24D7270A99A500324BD2 /* libPacket++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPacket++.a"; path = "../../../../../usr/local/lib/libPacket++.a"; sourceTree = "<group>"; };
 		7FAA24D8270A99A500324BD2 /* libPcap++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPcap++.a"; path = "../../../../../usr/local/lib/libPcap++.a"; sourceTree = "<group>"; };
 		7FAA24DC270A9FC100324BD2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		7FAC094F270B66FB004754B2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7FCFF79E272A3B88009829A0 /* PcapThreadCaptureHolder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PcapThreadCaptureHolder.cpp; sourceTree = "<group>"; };
+		7FCFF79F272A3B88009829A0 /* PcapThreadCaptureHolder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapThreadCaptureHolder.hpp; sourceTree = "<group>"; };
 		7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterfaceSelectorView.swift; sourceTree = "<group>"; };
 		7FF4259C2711185E00210F28 /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +145,7 @@
 				7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */,
 				7F50F356270E870D00A5BAD0 /* TestView.swift */,
 				7FF4259C2711185E00210F28 /* CaptureView.swift */,
+				7F9E028A2729F97300616F38 /* CaptureWindowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -235,6 +241,8 @@
 				7F8E3B6126F9884B00D68A86 /* SeniorProj-Bridging-Header.h */,
 				7F8E3B6A26F98EC400D68A86 /* PcapMain.cpp */,
 				7F8E3B6B26F98EC400D68A86 /* PcapMain.hpp */,
+				7FCFF79E272A3B88009829A0 /* PcapThreadCaptureHolder.cpp */,
+				7FCFF79F272A3B88009829A0 /* PcapThreadCaptureHolder.hpp */,
 			);
 			path = PcapPlusPlusStuff;
 			sourceTree = "<group>";
@@ -404,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FE8F44726F58194005BC7B6 /* NetworkInterfaceSelectorView.swift in Sources */,
+				7F9E028B2729F97300616F38 /* CaptureWindowView.swift in Sources */,
 				7F8E3B6C26F98EC400D68A86 /* PcapMain.cpp in Sources */,
 				7F49997D26F53277002DB095 /* NetworkInterface.swift in Sources */,
 				7FF4259D2711185E00210F28 /* CaptureView.swift in Sources */,
@@ -414,6 +423,7 @@
 				7F50F357270E870D00A5BAD0 /* TestView.swift in Sources */,
 				7F733A6C270CE9DA00AD1B03 /* PcapCppDevWrapper.mm in Sources */,
 				7F49994F26F51D81002DB095 /* SeniorProjApp.swift in Sources */,
+				7FCFF7A0272A3B88009829A0 /* PcapThreadCaptureHolder.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

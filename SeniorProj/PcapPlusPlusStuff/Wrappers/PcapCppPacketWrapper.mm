@@ -9,9 +9,9 @@
 
 @implementation PcapCppPacketWrappper
 
-- (id) initWithInt: (NSInteger) packetLength {
+- (id) initWithPacket: (void *) aPacket {
     if (self) {
-        length = packetLength;
+        packet = aPacket;
     }
     return self;
 }

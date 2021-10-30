@@ -10,7 +10,6 @@ import SwiftUI
 struct NetworkInterfaceDetailsView: View {
     @State private var deviceOpened = false
     let device : PcapCppDevWrapper
-
     var body: some View {
         VStack {
             
@@ -25,7 +24,7 @@ struct NetworkInterfaceDetailsView: View {
             Button(action: {stopCapture()}) {
                 Text("Stop packet capture")
             }
-    
+            
             //                Button (action: {stopCapture()}) {
             //                    Text("Stop cpature")
             //                }
@@ -45,6 +44,7 @@ struct NetworkInterfaceDetailsView: View {
     }
     func stopCapture() -> Void {
         device.stopCapture()
+//        var packets = device.getPacketArray()        
     }
 }
 

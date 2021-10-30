@@ -16,7 +16,12 @@ struct SeniorProjApp: App {
             TextEditor(text: .constant("What goes here?"))
 
         }
+        WindowGroup{
+            
+        }
         
     }
     
+    
 }
+

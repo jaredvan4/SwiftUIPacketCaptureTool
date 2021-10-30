@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "PcapCppDevWrapper.hpp"
 #import "PcapLiveDevice.h"
+#import "PcapThreadCaptureHolder.hpp"
 #include <thread>
 
 @implementation PcapCppDevWrapper
@@ -62,7 +63,7 @@
 
 - (void) startCapture {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
-//    tempDev->startCapture([self onPacketArrives],&tempDev);
+//    tempDev->startCapture(PcapThreadCaptureHolder::onPacketArrives,&tempDev);
     [self performSelectorInBackground:@selector(lessThanIdealAsyncCapture) withObject:nil];
     return;
 //    pcpp::RawPacketVector packetVector;
@@ -88,41 +89,60 @@
 //    }
     
 }
-- (void) onPacketArrives {
-    
-}
 
 - (void) stopCapture {
-    captureActive = false;
+    pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
+    if (tempDev->captureActive()) {
+        tempDev->stopCapture();
+        [self closeDev];
+        return;
+    }
+    NSLog(@"Device already closed lready closed");
 }
 
 - (void) closeDev {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     tempDev->close();
 }
+//below not used
 
 - (void) onPacketArrive : (void*) packetArrived : (void*) pcapLiveDev : (void *)cookie {
     pcpp::Packet parsedPacket ((pcpp::RawPacket*) packetArrived);
 }
-//TODO: use async callback, high cpu usage
+
 - (void) lessThanIdealAsyncCapture {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
+    tempDev->startCapture(onPacketArrives,&packetArray);
     pcpp::RawPacketVector packetVector;
-    tempDev->startCapture(packetVector);
-    captureActive = true;
-    while (captureActive) {
-        //wait for user to end capture
-    }
-    tempDev->stopCapture();
-    packetArray = [NSMutableArray arrayWithCapacity:packetVector.size()];
-    for (pcpp::RawPacket *packet : packetVector) {
-        PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithInt:packet->getRawDataLen()];
-        [packetArray addObject:newPacketWrapper];
-    }
+    return;
+//    while (captureActive) {
+//    }
+//    tempDev->stopCapture();
+//    packetArray = [NSMutableArray arrayWithCapacity:packetVector.size()];
+//    for (pcpp::RawPacket *packet : packetVector) {
+//        PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithInt:packet->getRawDataLen()];
+//        [packetArray addObject:newPacketWrapper];
+//        NSLog(@"%i",packet->getRawDataLen());
+//    }
 }
 
 - (NSMutableArray<PcapCppPacketWrappper*>*) getPacketArray {
     return packetArray;
+}
+
+
+//do something when packet arrives
+//TODO: Fix memory access violation below when attempting to add to packetArray
+
+ void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *packetArray) {
+    //wtf below???
+//    NSMutableArray<PcapCppPacketWrappper*> *aPacketArray = (NSMutableArray<PcapCppPacketWrappper*> *)CFBridgingRelease(packetArray);
+    std::cout << "Packet asynchronously captured: " << rawPacket->getRawDataLen() << "\n";
+    pcpp::Packet *nonRawPacket;
+    nonRawPacket = new pcpp::Packet(rawPacket);
+    std::cout << "packet to string: " << nonRawPacket->toString();
+//    PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithPacket:nonRawPacket];
+   
 }
 
 @end

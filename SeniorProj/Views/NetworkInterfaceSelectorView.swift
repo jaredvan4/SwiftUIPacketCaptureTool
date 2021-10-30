@@ -20,8 +20,7 @@ struct NetworkInterfaceSelectorView : View {
                     HStack{
                         Divider()
                         VStack {
-                            NavigationLink(
-                                destination: NetworkInterfaceDetailsView(device: devices[index]),
+                            NavigationLink(                                destination: NetworkInterfaceDetailsView(device: devices[index]),
                                 label: {
                                     Text(devices[index].getName())
                                 })

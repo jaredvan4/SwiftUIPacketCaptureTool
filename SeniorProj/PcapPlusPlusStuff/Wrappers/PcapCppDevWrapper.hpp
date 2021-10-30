@@ -28,6 +28,5 @@
 - (void) closeDev;
 - (void) stopCapture;
 - (void) onPacketArrive : (void*) packetArrived : (void*) pcapLiveDev : (void *)cookie;
-- (void) onPacketArrives;
 - (void) lessThanIdealAsyncCapture;
 @end
