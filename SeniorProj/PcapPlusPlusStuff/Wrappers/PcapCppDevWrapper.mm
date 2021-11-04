@@ -13,12 +13,14 @@
 
 @implementation PcapCppDevWrapper
 
-NSMutableArray<PcapCppPacketWrappper *> *packetArray = [NSMutableArray arrayWithCapacity:35] ;
 
+
+//init with 35 as it shouldn't
 - (id) initWithDev:(void*) aDev {
     if (self) {
         dev = aDev;
         captureActive = false;
+        packetArray = [NSMutableArray arrayWithCapacity:35];
     }
     return self;
 }
@@ -64,7 +66,7 @@ NSMutableArray<PcapCppPacketWrappper *> *packetArray = [NSMutableArray arrayWith
 
 - (void) startCapture {
 //    tempDev->startCapture(PcapThreadCaptureHolder::onPacketArrives,&tempDev);
-    [self performSelectorInBackground:@selector(lessThanIdealAsyncCapture) withObject:nil];
+    [self performSelectorInBackground:@selector(asyncCaptureStart) withObject:nil];
     captureActive = true;
     return;
 //    pcpp::RawPacketVector packetVector;
@@ -98,7 +100,7 @@ NSMutableArray<PcapCppPacketWrappper *> *packetArray = [NSMutableArray arrayWith
         [self closeDev];
         return;
     }
-    NSLog(@"Device already closed lready closed");
+    NSLog(@"Device already closed");
 }
 
 - (void) closeDev {
@@ -111,9 +113,9 @@ NSMutableArray<PcapCppPacketWrappper *> *packetArray = [NSMutableArray arrayWith
     pcpp::Packet parsedPacket ((pcpp::RawPacket*) packetArrived);
 }
 
-- (void) lessThanIdealAsyncCapture {
+- (void) asyncCaptureStart {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
-    tempDev->startCapture(onPacketArrives,&packetArray);
+    tempDev->startCapture(onPacketArrives,(void *)CFBridgingRetain(self));
     return;
 //    while (captureActive) {
 //    }
@@ -128,6 +130,7 @@ NSMutableArray<PcapCppPacketWrappper *> *packetArray = [NSMutableArray arrayWith
 
 - (void)addToPacketArray:(PcapCppPacketWrappper*) aPacket {
     [packetArray addObject:aPacket];
+    NSLog(@"%d array is size: ",packetArray.count);
 }
 
 - (NSMutableArray<PcapCppPacketWrappper*>*) getPacketArray {
@@ -139,15 +142,14 @@ NSMutableArray<PcapCppPacketWrappper *> *packetArray = [NSMutableArray arrayWith
 //do something when packet arrives
 //TODO: Fix memory leak of nonRawPacket
 
-static void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *cookie) {
+ static void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *cookie) {
+     PcapCppDevWrapper *aDev = (__bridge PcapCppDevWrapper*)cookie;
      std::cout << "Packet asynchronously captured: " << rawPacket->getRawDataLen() << "\n";
      pcpp::Packet *nonRawPacket;
      nonRawPacket = new pcpp::Packet(rawPacket);
-     std::cout << "packet to string: " << nonRawPacket->toString();
      PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithPacket:nonRawPacket];
-    [packetArray addObject:newPacketWrapper];
-//wtf below???
-//    NSMutableArray<PcapCppPacketWrappper*> *aPacketArray = (NSMutableArray<PcapCppPacketWrappper*> *)CFBridgingRelease(packetArray);
+     [aDev addToPacketArray:newPacketWrapper];
+     //wtf below???
 }
 
 @end

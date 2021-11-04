@@ -10,14 +10,26 @@ import SwiftUI
 struct NetworkInterfaceDetailsView: View {
     @State private var deviceOpened = false
     let device : PcapCppDevWrapper
+    @Environment(\.openURL) var openURL
     var body: some View {
         VStack {
-            
+//            NavigationView {
+//                NavigationLink(destination: CaptureWindowView(aDevice: device),label: {
+//                    Text("captureing")
+//                })
+//            }
             Text( "Description!" + device.getDevDescription()).bold()
             Text("Name: " + device.getName())
             Text("IPv4 address: " + device.getIPv4Address())
             Text("Mac Address: " + device.getMacAddress())
-            
+
+            Button(action: {
+                if let url = URL(string: "myappname://CaptureWindowView"){
+                openURL(url)}
+                
+            }) {
+                Text("Open capture window")
+            }
             Button(action: {openDevice()}) {
                 Text("Open Device")
             }
@@ -44,8 +56,8 @@ struct NetworkInterfaceDetailsView: View {
     }
     func stopCapture() -> Void {
         device.stopCapture()
-        var packetArray : [PcapCppPacketWrappper] =  device.getPacketArray() as! [PcapCppPacketWrappper];
-//        var packets = device.getPacketArray()        
+//        var packetArray : [PcapCppPacketWrappper] =  device.getPacketArray() as! [PcapCppPacketWrappper];
+//        print(packetArray.count)
     }
 }
 

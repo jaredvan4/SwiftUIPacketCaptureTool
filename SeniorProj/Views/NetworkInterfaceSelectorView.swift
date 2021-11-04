@@ -21,10 +21,10 @@ struct NetworkInterfaceSelectorView : View {
                         Divider()
                         VStack {
                             NavigationLink(                                destination: NetworkInterfaceDetailsView(device: devices[index]),
-                                label: {
-                                    Text(devices[index].getName())
-                                })
-
+                                                                           label: {
+                                Text(devices[index].getName())
+                            })
+                            
                         }.accentColor(.blue) //vstack ends here
                     }
                 }
