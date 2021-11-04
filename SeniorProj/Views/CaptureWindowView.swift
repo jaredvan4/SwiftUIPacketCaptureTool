@@ -13,8 +13,8 @@ struct CaptureWindowView: View {
     }
 }
 
-struct CaptureWindowView_Previews: PreviewProvider {
-    static var previews: some View {
-        CaptureWindowView()
-    }
-}
+//struct CaptureWindowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CaptureWindowView()
+//    }
+//}

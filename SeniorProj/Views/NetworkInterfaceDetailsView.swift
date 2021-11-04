@@ -44,6 +44,7 @@ struct NetworkInterfaceDetailsView: View {
     }
     func stopCapture() -> Void {
         device.stopCapture()
+        var packetArray : [PcapCppPacketWrappper] =  device.getPacketArray() as! [PcapCppPacketWrappper];
 //        var packets = device.getPacketArray()        
     }
 }

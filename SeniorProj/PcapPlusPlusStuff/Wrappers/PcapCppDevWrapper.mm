@@ -13,6 +13,7 @@
 
 @implementation PcapCppDevWrapper
 
+NSMutableArray<PcapCppPacketWrappper *> *packetArray = [NSMutableArray arrayWithCapacity:35] ;
 
 - (id) initWithDev:(void*) aDev {
     if (self) {
@@ -62,9 +63,9 @@
 //TODO: Fix below to be asynchronous ( <--- spelled wrong) , at the moment it just sleeps to allow capture to occur
 
 - (void) startCapture {
-    pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
 //    tempDev->startCapture(PcapThreadCaptureHolder::onPacketArrives,&tempDev);
     [self performSelectorInBackground:@selector(lessThanIdealAsyncCapture) withObject:nil];
+    captureActive = true;
     return;
 //    pcpp::RawPacketVector packetVector;
 //    tempDev->startCapture(packetVector);
@@ -113,7 +114,6 @@
 - (void) lessThanIdealAsyncCapture {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     tempDev->startCapture(onPacketArrives,&packetArray);
-    pcpp::RawPacketVector packetVector;
     return;
 //    while (captureActive) {
 //    }
@@ -126,23 +126,28 @@
 //    }
 }
 
+- (void)addToPacketArray:(PcapCppPacketWrappper*) aPacket {
+    [packetArray addObject:aPacket];
+}
+
 - (NSMutableArray<PcapCppPacketWrappper*>*) getPacketArray {
     return packetArray;
 }
 
 
-//do something when packet arrives
-//TODO: Fix memory access violation below when attempting to add to packetArray
 
- void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *packetArray) {
-    //wtf below???
+//do something when packet arrives
+//TODO: Fix memory leak of nonRawPacket
+
+static void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *cookie) {
+     std::cout << "Packet asynchronously captured: " << rawPacket->getRawDataLen() << "\n";
+     pcpp::Packet *nonRawPacket;
+     nonRawPacket = new pcpp::Packet(rawPacket);
+     std::cout << "packet to string: " << nonRawPacket->toString();
+     PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithPacket:nonRawPacket];
+    [packetArray addObject:newPacketWrapper];
+//wtf below???
 //    NSMutableArray<PcapCppPacketWrappper*> *aPacketArray = (NSMutableArray<PcapCppPacketWrappper*> *)CFBridgingRelease(packetArray);
-    std::cout << "Packet asynchronously captured: " << rawPacket->getRawDataLen() << "\n";
-    pcpp::Packet *nonRawPacket;
-    nonRawPacket = new pcpp::Packet(rawPacket);
-    std::cout << "packet to string: " << nonRawPacket->toString();
-//    PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithPacket:nonRawPacket];
-   
 }
 
 @end

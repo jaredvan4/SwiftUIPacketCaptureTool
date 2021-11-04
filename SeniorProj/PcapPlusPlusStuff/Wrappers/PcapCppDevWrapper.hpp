@@ -13,11 +13,11 @@
 @interface PcapCppDevWrapper : NSObject {
     void* dev;
     bool captureActive;
-    NSMutableArray<PcapCppPacketWrappper *> *packetArray;
+//    NSMutableArray<PcapCppPacketWrappper *> *packetArray;
 }
 
 - (id) initWithDev:(void *) aDev;
-
+-(void)addToPacketArray:(PcapCppPacketWrappper*) aPacket;
 - (NSString *) getName;
 - (NSString *) getIPv4Address;
 - (NSString *) getDevDescription;

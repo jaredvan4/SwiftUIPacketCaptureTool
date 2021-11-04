@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 @interface PcapCppPacketWrappper : NSObject {
-    NSInteger length;
     void *packet;
 }
 - (id) initWithPacket: (void *) aPacket;
+- (NSString *) getDescription;
 - (NSInteger) getLength;
+- (void) dealloc;
 @end
