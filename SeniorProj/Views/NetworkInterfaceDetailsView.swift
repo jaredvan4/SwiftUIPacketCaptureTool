@@ -8,56 +8,59 @@
 import SwiftUI
 
 struct NetworkInterfaceDetailsView: View {
-    @State private var deviceOpened = false
     let device : PcapCppDevWrapper
-    @Environment(\.openURL) var openURL
+    @State var captureWindowIsOpen = false
+//    @EnvironmentObject var captureWindowIsOpenGlobal : GlobalIIsCaptureWindowIsOpen
+    @ViewBuilder
     var body: some View {
-        VStack {
-//            NavigationView {
-//                NavigationLink(destination: CaptureWindowView(aDevice: device),label: {
-//                    Text("captureing")
-//                })
-//            }
-            Text( "Description!" + device.getDevDescription()).bold()
-            Text("Name: " + device.getName())
-            Text("IPv4 address: " + device.getIPv4Address())
-            Text("Mac Address: " + device.getMacAddress())
-
-            Button(action: {
-                if let url = URL(string: "myappname://CaptureWindowView"){
-                openURL(url)}
+        if captureWindowIsOpen {
+            CaptureWindowView(device: device,captureWindowIsOpen: $captureWindowIsOpen).transition(.asymmetric(insertion: .opacity, removal: .opacity))
+            
+        } else {
+            VStack {
+                Text( "Device: " + device.getDevDescription()).bold()
+                Text("Name: " + device.getName())
+                Text("IPv4 address: " + device.getIPv4Address())
+                Text("Mac Address: " + device.getMacAddress())
                 
-            }) {
-                Text("Open capture window")
+                Button(action: {
+                    withAnimation(){
+                        captureWindowIsOpen.toggle()
+//                        captureWindowIsOpenGlobal.captureWindowIsOpen.toggle()
+                    }
+                }) {
+                    Text("Open capture window")
+                }
+                //            Button(action: {
+                //                openDevice()}) {
+                //                Text("Open Device")
+                //            }
+                //            Button(action: {stopCapture()}) {
+                //                Text("Stop packet capture")
+                //            }
+                
             }
-            Button(action: {openDevice()}) {
-                Text("Open Device")
-            }
-            Button(action: {stopCapture()}) {
-                Text("Stop packet capture")
-            }
-            
-            //                Button (action: {stopCapture()}) {
-            //                    Text("Stop cpature")
-            //                }
-            
-            
-            
         }
+        //        .disabled(device.isCapturing())
+        
     }
+    
     //TODO: Fix alert to alert properly
     func openDevice() -> Void {
         let openedSuccessfully :Bool = device.openDev()
         if (!openedSuccessfully) {
-            Alert(title: Text("Attempting to open device"), message: Text("Failed to open device :("),primaryButton: .destructive(Text("Ok")),secondaryButton:.cancel() )
+           
         } else {
             
         }
     }
+    
+    //not needed?
     func stopCapture() -> Void {
         device.stopCapture()
-//        var packetArray : [PcapCppPacketWrappper] =  device.getPacketArray() as! [PcapCppPacketWrappper];
-//        print(packetArray.count)
+        captureWindowIsOpen.toggle()
+        //        var packetArray : [PcapCppPacketWrappper] =  device.getPacketArray() as! [PcapCppPacketWrappper];
+        //        print(packetArray.count)
     }
 }
 

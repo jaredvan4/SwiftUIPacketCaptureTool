@@ -52,6 +52,7 @@
     return macAddressStr;
 }
 
+//opens device and starts capture
 - (Boolean) openDev {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     Boolean result = tempDev->open();
@@ -93,6 +94,11 @@
     
 }
 
+
+- (bool) isCapturing {
+    return captureActive;
+}
+
 - (void) stopCapture {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     if (tempDev->captureActive()) {
@@ -130,7 +136,7 @@
 
 - (void)addToPacketArray:(PcapCppPacketWrappper*) aPacket {
     [packetArray addObject:aPacket];
-    NSLog(@"%d array is size: ",packetArray.count);
+    NSLog(@"array is size: %lu ",(unsigned long)packetArray.count);
 }
 
 - (NSMutableArray<PcapCppPacketWrappper*>*) getPacketArray {
@@ -139,13 +145,14 @@
 
 
 
-//do something when packet arrives
+//Add to packet array when packet arrives
 //TODO: Fix memory leak of nonRawPacket
 
  static void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *cookie) {
      PcapCppDevWrapper *aDev = (__bridge PcapCppDevWrapper*)cookie;
      std::cout << "Packet asynchronously captured: " << rawPacket->getRawDataLen() << "\n";
      pcpp::Packet *nonRawPacket;
+     pcpp::Packet nPtrnonraw = pcpp::Packet(rawPacket);
      nonRawPacket = new pcpp::Packet(rawPacket);
      PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithPacket:nonRawPacket];
      [aDev addToPacketArray:newPacketWrapper];

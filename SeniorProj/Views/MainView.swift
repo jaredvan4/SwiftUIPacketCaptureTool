@@ -13,7 +13,8 @@ struct MainView: View {
     var body: some View {
         VSplitView {
             NetworkInterfaceSelectorView(devices:devicesArray)
-        }.frame(minWidth: 600, minHeight: 400).frame(width: nil)
+//            CaptureWindowView()
+        }.frame(minWidth: 800, minHeight: 500).frame(width: nil)
     }
     
     init (pcapMain : PcapMainWrapper) {

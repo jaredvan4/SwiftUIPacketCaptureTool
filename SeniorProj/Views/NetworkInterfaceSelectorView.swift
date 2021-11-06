@@ -7,13 +7,13 @@
 
 import SwiftUI
 //TODO: Make this a searchable collection of Devices?
-
+//TODO: Disable device picker when active cpature 
 struct NetworkInterfaceSelectorView : View {
     @State private var searchQuery = ""
+//    @StateObject var captureViewIsOpenGlobal = GlobalIIsCaptureWindowIsOpen()
     let devices : [PcapCppDevWrapper]
     var body: some View {
         NavigationView {
-            
             List {
                 Text("Live Devices").font(.largeTitle)
                 ForEach (devices.indices) { index in
@@ -25,12 +25,14 @@ struct NetworkInterfaceSelectorView : View {
                                 Text(devices[index].getName())
                             })
                             
-                        }.accentColor(.blue) //vstack ends here
+                        }//vstack ends here
                     }
                 }
             }
-        }.navigationTitle(Text("network selector"))
+        }.navigationTitle(Text("Senior proj"))
+        
     }
 }
+
 
 

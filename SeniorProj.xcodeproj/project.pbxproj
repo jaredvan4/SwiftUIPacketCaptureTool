@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7F047F4026FA5C81001E7276 /* NetworkInterfaceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F047F3F26FA5C81001E7276 /* NetworkInterfaceDetailsView.swift */; };
+		7F3D262F2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3D262E2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift */; };
 		7F40F5832710E6B800FE8995 /* PcapCppPacketWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F40F5822710E6B800FE8995 /* PcapCppPacketWrapper.mm */; };
 		7F49994F26F51D81002DB095 /* SeniorProjApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49994E26F51D81002DB095 /* SeniorProjApp.swift */; };
 		7F49995126F51D81002DB095 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49995026F51D81002DB095 /* MainView.swift */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		7F047F3F26FA5C81001E7276 /* NetworkInterfaceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterfaceDetailsView.swift; sourceTree = "<group>"; };
+		7F3D262E2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalIIsCaptureWindowIsOpen.swift; sourceTree = "<group>"; };
 		7F40F5822710E6B800FE8995 /* PcapCppPacketWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PcapCppPacketWrapper.mm; sourceTree = "<group>"; };
 		7F40F5842710E6FC00FE8995 /* PcapCppPacketWrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapCppPacketWrapper.hpp; sourceTree = "<group>"; };
 		7F49994B26F51D81002DB095 /* SeniorProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				7F49997C26F53277002DB095 /* NetworkInterface.swift */,
+				7F3D262E2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift */,
 			);
 			path = SwiftClasses;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				7FE8F44726F58194005BC7B6 /* NetworkInterfaceSelectorView.swift in Sources */,
 				7F9E028B2729F97300616F38 /* CaptureWindowView.swift in Sources */,
 				7F8E3B6C26F98EC400D68A86 /* PcapMain.cpp in Sources */,
+				7F3D262F2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift in Sources */,
 				7F49997D26F53277002DB095 /* NetworkInterface.swift in Sources */,
 				7FF4259D2711185E00210F28 /* CaptureView.swift in Sources */,
 				7F40F5832710E6B800FE8995 /* PcapCppPacketWrapper.mm in Sources */,

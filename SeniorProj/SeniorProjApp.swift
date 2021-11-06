@@ -13,16 +13,15 @@ struct SeniorProjApp: App {
     var body: some Scene {
         WindowGroup {
             MainView(pcapMain: mainPcap)
-            TextEditor(text: .constant("What goes here?"))
-
+            //TextEditor(text: .constant("What goes here?"))
+            
         }
         WindowGroup ("Capture"){
             
         }
-
+        
         
     }
-    
     
 }
 
