@@ -22,5 +22,15 @@
     return devicesArray;
 }
 
+- (void) openPcapFile : (NSString*) filePath {
+    std::string filePathTemp = std::string([filePath UTF8String]);
+    PcapMain pcapMainClass;
+    pcapMainClass.openPcapFile(filePathTemp);
+}
+
+- (void) saveFile : (NSString *) filePath {
+    std::string filePathTemp = std::string([filePath UTF8String]);
+
+}
 @end
 

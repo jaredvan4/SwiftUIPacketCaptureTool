@@ -10,9 +10,12 @@
 #include <vector>
 #include "PcapLiveDeviceList.h"
 #include "SystemUtils.h"
+#include "PcapFileDevice.h"
 
 class PcapMain {
     
 public:
     std::vector<pcpp::PcapLiveDevice*> getDevices();
+    void openPcapFile(std::string filePath);
+    void saveFile(std::string filePath);
 };

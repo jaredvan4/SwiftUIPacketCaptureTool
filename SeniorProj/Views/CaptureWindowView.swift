@@ -10,13 +10,17 @@ import SwiftUI
 
 struct CaptureWindowView: View {
     var aDevice : PcapCppDevWrapper
-    @State var packets : [PcapCppPacketWrappper]
+    var packets : NSMutableArray
     @State private var showExitAlert = false
+    @State private var packetNumber : Int = 0
     @Binding var captureWindowIsOpen: Bool
     var body: some View {
-        //having the random toolbar is probably stupid, but idk what else to put there to allow a toolbar to exist
-        
-        Divider().toolbar {
+        GroupBox() {
+            Text("sadasds")
+            ScrollView(.horizontal) {
+               
+            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity, alignment: .center)
+        }.toolbar {
             ToolbarItem(placement:.principal) {
                 Button(action: {
                             startCapture()}) {
@@ -44,30 +48,31 @@ struct CaptureWindowView: View {
                                 aDevice.stopCapture()
                                 captureWindowIsOpen.toggle()
                             }
-                        },secondaryButton: .cancel()
+                        },secondaryButton: .cancel(Text("No"))
                         
                     )
                 }
             }
             
         }
-            ScrollView  {
-                ForEach (self.packets.indices) { index in
-                    
-                }
-            }
+        //Section where current selected packet data is shown
+        GroupBox(label: Label("Should be bound to current selected packet",systemImage: "")) {
+            
+        }.frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        
         
     }
     
     //constructor for view
-    init (device : PcapCppDevWrapper, captureWindowIsOpen: Binding <Bool>) {
-        self.aDevice = device
-        self.packets = device.getPacketArray() as! [PcapCppPacketWrappper]
-        self._captureWindowIsOpen = captureWindowIsOpen
-    }
+        init (device : PcapCppDevWrapper, captureWindowIsOpen: Binding <Bool>) {
+            self.aDevice = device
+            self.packets = device.getPacketArray() as NSMutableArray
+            self._captureWindowIsOpen = captureWindowIsOpen
+        }
     
     func stopCapture() -> Void {
         aDevice.stopCapture()
+        aDevice.emptyArray()
     }
     
     func startCapture () -> Bool {
@@ -76,6 +81,11 @@ struct CaptureWindowView: View {
             return true
         }
         return true
+    }
+    
+    //sends message to dev wrapper to dealloc all packets
+    func emptyPacketArray () -> Void {
+        self.aDevice.emptyArray()
     }
 }
 

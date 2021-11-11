@@ -9,13 +9,11 @@
 #import "PcapCppDevWrapper.hpp"
 #import "PcapLiveDevice.h"
 #import "PcapThreadCaptureHolder.hpp"
-#include <thread>
 
 @implementation PcapCppDevWrapper
 
+//init with 35 as it seems like reasonable starting size for the packet array
 
-
-//init with 35 as it shouldn't
 - (id) initWithDev:(void*) aDev {
     if (self) {
         dev = aDev;
@@ -98,6 +96,9 @@
 - (bool) isCapturing {
     return captureActive;
 }
+- (void) emptyArray {
+    [packetArray removeAllObjects];
+}
 
 - (void) stopCapture {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
@@ -136,7 +137,7 @@
 
 - (void)addToPacketArray:(PcapCppPacketWrappper*) aPacket {
     [packetArray addObject:aPacket];
-    NSLog(@"array is size: %lu ",(unsigned long)packetArray.count);
+//    NSLog(@"array is size: %lu ",(unsigned long)packetArray.count);
 }
 
 - (NSMutableArray<PcapCppPacketWrappper*>*) getPacketArray {
@@ -144,19 +145,15 @@
 }
 
 
-
 //Add to packet array when packet arrives
 //TODO: Fix memory leak of nonRawPacket
 
  static void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *cookie) {
      PcapCppDevWrapper *aDev = (__bridge PcapCppDevWrapper*)cookie;
-     std::cout << "Packet asynchronously captured: " << rawPacket->getRawDataLen() << "\n";
      pcpp::Packet *nonRawPacket;
-     pcpp::Packet nPtrnonraw = pcpp::Packet(rawPacket);
      nonRawPacket = new pcpp::Packet(rawPacket);
      PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithPacket:nonRawPacket];
      [aDev addToPacketArray:newPacketWrapper];
-     //wtf below???
 }
 
 @end

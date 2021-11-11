@@ -17,6 +17,7 @@
 
 - (id) initWithDev:(void *) aDev;
 -(void)addToPacketArray:(PcapCppPacketWrappper*) aPacket;
+- (void)emptyArray;
 - (NSString *) getName;
 - (NSString *) getIPv4Address;
 - (NSString *) getDevDescription;

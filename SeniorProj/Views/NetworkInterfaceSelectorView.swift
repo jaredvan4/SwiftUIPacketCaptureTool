@@ -13,11 +13,12 @@ struct NetworkInterfaceSelectorView : View {
 //    @StateObject var captureViewIsOpenGlobal = GlobalIIsCaptureWindowIsOpen()
     let devices : [PcapCppDevWrapper]
     var body: some View {
+        
         NavigationView {
             List {
                 Text("Live Devices").font(.largeTitle)
                 ForEach (devices.indices) { index in
-                    HStack{
+                    HStack {
                         Divider()
                         VStack {
                             NavigationLink(                                destination: NetworkInterfaceDetailsView(device: devices[index]),

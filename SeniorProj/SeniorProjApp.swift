@@ -9,19 +9,31 @@ import SwiftUI
 
 @main
 struct SeniorProjApp: App {
+    @State var filePath = ""
+    @State var showFileChooser = false
     var mainPcap: PcapMainWrapper = PcapMainWrapper()
     var body: some Scene {
         WindowGroup {
             MainView(pcapMain: mainPcap)
-            //TextEditor(text: .constant("What goes here?"))
+        }.commands {
+            CommandGroup(replacing: .newItem) {
+                Button("open pcap file") {
+                    let panel = NSOpenPanel()
+                    panel.allowsMultipleSelection = false
+                    panel.canChooseDirectories = false
+                    if panel.runModal() == .OK {
+                        self.filePath = panel.url?.absoluteString ?? ""
+                        mainPcap.openPcapFile(self.filePath)
+                    }
+                }
+                //            .disabled(true)
+            }
             
         }
-        WindowGroup ("Capture"){
-            
+        WindowGroup() {
+            Text("dsadsa")
         }
-        
         
     }
-    
 }
 

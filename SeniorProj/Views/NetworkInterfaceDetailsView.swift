@@ -15,7 +15,6 @@ struct NetworkInterfaceDetailsView: View {
     var body: some View {
         if captureWindowIsOpen {
             CaptureWindowView(device: device,captureWindowIsOpen: $captureWindowIsOpen).transition(.asymmetric(insertion: .opacity, removal: .opacity))
-            
         } else {
             VStack {
                 Text( "Device: " + device.getDevDescription()).bold()

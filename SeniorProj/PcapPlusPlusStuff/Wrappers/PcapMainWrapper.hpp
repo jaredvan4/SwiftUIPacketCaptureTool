@@ -10,6 +10,6 @@
 }
 
 - (NSMutableArray *) getDevices;
-
-
+- (void) openPcapFile : (NSString*)filePath;
+- (void) saveFile : (NSString*)filePath;
 @end
