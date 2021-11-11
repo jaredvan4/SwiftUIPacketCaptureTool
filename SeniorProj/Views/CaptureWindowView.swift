@@ -12,14 +12,18 @@ struct CaptureWindowView: View {
     var aDevice : PcapCppDevWrapper
     var packets : NSMutableArray
     @State private var showExitAlert = false
-    @State private var packetNumber : Int = 0
     @Binding var captureWindowIsOpen: Bool
     var body: some View {
         GroupBox() {
-            Text("sadasds")
+            Text("Packets")
+            if (self.packets.count > 0) {
             ScrollView(.horizontal) {
-               
+                ForEach(0..<packets.count) { _packet in
+                    Text("sda")
+                }
             }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity, alignment: .center)
+             }
+            
         }.toolbar {
             ToolbarItem(placement:.principal) {
                 Button(action: {
@@ -46,6 +50,7 @@ struct CaptureWindowView: View {
                         title: Text("Exit"), message: Text("Are you sure you want to exit?\nThis will stop any active capture on this device & any unsaved data will be lost"), primaryButton: .destructive(Text("Yes")) {
                             withAnimation() {
                                 aDevice.stopCapture()
+                                aDevice.emptyArray()
                                 captureWindowIsOpen.toggle()
                             }
                         },secondaryButton: .cancel(Text("No"))
@@ -66,13 +71,12 @@ struct CaptureWindowView: View {
     //constructor for view
         init (device : PcapCppDevWrapper, captureWindowIsOpen: Binding <Bool>) {
             self.aDevice = device
-            self.packets = device.getPacketArray() as NSMutableArray
+            self.packets =  aDevice.getPacketArray()
             self._captureWindowIsOpen = captureWindowIsOpen
         }
     
     func stopCapture() -> Void {
         aDevice.stopCapture()
-        aDevice.emptyArray()
     }
     
     func startCapture () -> Bool {

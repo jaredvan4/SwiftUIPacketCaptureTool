@@ -26,6 +26,9 @@ struct SeniorProjApp: App {
                         mainPcap.openPcapFile(self.filePath)
                     }
                 }
+                Button("Save as Pcap File") {
+                    
+                }
                 //            .disabled(true)
             }
             

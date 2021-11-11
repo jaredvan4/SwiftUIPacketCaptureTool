@@ -88,6 +88,7 @@
 		7F8E3B6B26F98EC400D68A86 /* PcapMain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapMain.hpp; sourceTree = "<group>"; };
 		7F8E3B6E26F9923A00D68A86 /* PcapMainWrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapMainWrapper.hpp; sourceTree = "<group>"; };
 		7F8E3B6F26F992CE00D68A86 /* PcapMainWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PcapMainWrapper.mm; sourceTree = "<group>"; };
+		7F929C28273D918800D82B69 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7F99298E270B4BA5007FC1F0 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = ../../../../../usr/local/lib; sourceTree = "<group>"; };
 		7F9E028A2729F97300616F38 /* CaptureWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureWindowView.swift; sourceTree = "<group>"; };
 		7FA1F1FF26FCD55A00586D61 /* PcapSeniorProjDependency */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PcapSeniorProjDependency; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +156,7 @@
 		7F49994226F51D81002DB095 = {
 			isa = PBXGroup;
 			children = (
+				7F929C28273D918800D82B69 /* README.md */,
 				7F49994D26F51D81002DB095 /* SeniorProj */,
 				7F49996026F51D82002DB095 /* SeniorProjTests */,
 				7F49996B26F51D82002DB095 /* SeniorProjUITests */,

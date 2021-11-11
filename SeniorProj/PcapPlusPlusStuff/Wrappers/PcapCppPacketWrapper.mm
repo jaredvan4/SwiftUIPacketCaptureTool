@@ -14,6 +14,7 @@
 - (id) initWithPacket: (void *) aPacket {
     if (self) {
         packet = aPacket;
+        id = [NSUUID UUID];
     }
     return self;
 }

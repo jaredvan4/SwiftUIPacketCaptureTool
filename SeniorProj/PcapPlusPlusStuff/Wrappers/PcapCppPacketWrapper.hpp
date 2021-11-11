@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @interface PcapCppPacketWrappper : NSObject {
     void *packet;
+    NSUUID *id;
 }
 - (id) initWithPacket: (void *) aPacket;
 - (NSString *) getDescription;
