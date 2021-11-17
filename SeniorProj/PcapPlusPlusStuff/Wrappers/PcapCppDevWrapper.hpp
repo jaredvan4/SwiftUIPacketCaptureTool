@@ -31,5 +31,5 @@
 - (void) stopCapture;
 - (void) onPacketArrive : (void*) packetArrived : (void*) pcapLiveDev : (void *)cookie;
 - (void) asyncCaptureStart;
-- (void) savePcapFile : (NSString *) filePath;
+- (Boolean) savePcapFile : (NSString *) filePath;
 @end

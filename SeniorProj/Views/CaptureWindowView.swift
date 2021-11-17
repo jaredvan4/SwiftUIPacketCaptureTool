@@ -113,9 +113,9 @@ struct CaptureWindowView: View {
 //        panel.allowedContentTypes = fileTypes
         if panel.runModal() == .OK {
             filePath = panel.url?.path ?? ""
-            self.aDevice.savePcapFile(filePath)
+             return self.aDevice.savePcapFile(filePath)
         }
-        return true
+        return false
     }
 }
 

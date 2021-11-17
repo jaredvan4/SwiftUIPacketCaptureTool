@@ -63,7 +63,6 @@
     return false;
 }
 
-//TODO: Fix below to be asynchronous ( <--- spelled wrong) , at the moment it just sleeps to allow capture to occur
 
 - (void) startCapture {
 //    tempDev->startCapture(PcapThreadCaptureHolder::onPacketArrives,&tempDev);
@@ -107,7 +106,7 @@
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     if (tempDev->captureActive()) {
         tempDev->stopCapture();
-//        [self closeDev];
+        [self closeDev];
         return;
     }
     NSLog(@"Device already closed");
@@ -117,7 +116,6 @@
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     tempDev->close();
 }
-//below not used
 
 - (void) onPacketArrive : (void*) packetArrived : (void*) pcapLiveDev : (void *)cookie {
     pcpp::Packet parsedPacket ((pcpp::RawPacket*) packetArrived);
@@ -147,21 +145,21 @@
     return _packetArray;
 }
 
-- (void) savePcapFile : (NSString *) filePath {
+- (Boolean) savePcapFile : (NSString *) filePath {
     std::string filePathTemp = std::string([filePath UTF8String]);
     pcpp::PcapNgFileWriterDevice writer(filePathTemp);
     writer.open();
     // try to open the file for writing
     if (!writer.open()){
         std::cerr << "Cannot open" << filePathTemp << "for writing" << std::endl;
-        return;
+        return false;
     }
     for (PcapCppPacketWrappper* packet in _packetArray) {
          pcpp::RawPacket *aPacketPtr = (pcpp::RawPacket*)packet.getRawPacket;
-//         pcpp::RawPacket aRawPacket;
-        writer.writePacket(*aPacketPtr);
+         writer.writePacket(*aPacketPtr);
     }
     writer.close();
+    return true;
 }
 
 //Add to packet array when packet arrives
@@ -169,10 +167,11 @@
  static void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *cookie) {
      PcapCppDevWrapper *aDev = (__bridge PcapCppDevWrapper*)cookie;
      pcpp::RawPacket* tempRawCopy = new pcpp::RawPacket;
-     std::memcpy((void*)tempRawCopy,(void*)rawPacket,sizeof(pcpp::RawPacket));
-     pcpp::Packet *nonRawPacket = new pcpp::Packet(tempRawCopy,true);
+     tempRawCopy->setRawData(rawPacket->getRawData(), rawPacket->getRawDataLen(), rawPacket->getPacketTimeStamp(),rawPacket->getLinkLayerType(),rawPacket->getFrameLength());
+     pcpp::Packet *nonRawPacket = new pcpp::Packet(tempRawCopy);
      PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithPacket:nonRawPacket];
      [aDev addToPacketArray:newPacketWrapper];
+     newPacketWrapper.getDescriptionAsLayers;
 }
 
 @end
