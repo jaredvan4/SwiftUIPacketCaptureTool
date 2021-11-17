@@ -5,6 +5,8 @@
 //  Created by Jared on 9/17/21.
 //
 
+//TODO: Exclude user from opening any file type besides pcapng
+
 import SwiftUI
 
 @main
@@ -29,7 +31,7 @@ struct SeniorProjApp: App {
                 Button("Save as Pcap File") {
                     
                 }
-                //            .disabled(true)
+                            .disabled(true)
             }
             
         }

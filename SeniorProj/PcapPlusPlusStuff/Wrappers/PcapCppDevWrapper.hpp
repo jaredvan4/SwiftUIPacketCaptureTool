@@ -12,8 +12,9 @@
 @interface PcapCppDevWrapper : NSObject {
     void* dev;
     bool captureActive;
-    @public NSMutableArray<PcapCppPacketWrappper*>* packetArray;
 }
+@property (nonatomic) NSMutableArray<PcapCppPacketWrappper*>* packetArray;
+
 
 - (id) initWithDev:(void *) aDev;
 -(void)addToPacketArray:(PcapCppPacketWrappper*) aPacket;
@@ -30,4 +31,5 @@
 - (void) stopCapture;
 - (void) onPacketArrive : (void*) packetArrived : (void*) pcapLiveDev : (void *)cookie;
 - (void) asyncCaptureStart;
+- (void) savePcapFile : (NSString *) filePath;
 @end

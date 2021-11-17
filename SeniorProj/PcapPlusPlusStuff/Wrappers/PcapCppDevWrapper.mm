@@ -9,6 +9,8 @@
 #import "PcapCppDevWrapper.hpp"
 #import "PcapLiveDevice.h"
 #import "PcapThreadCaptureHolder.hpp"
+#include "PcapFileDevice.h"
+
 
 @implementation PcapCppDevWrapper
 
@@ -18,7 +20,7 @@
     if (self) {
         dev = aDev;
         captureActive = false;
-        packetArray = [NSMutableArray arrayWithCapacity:35];
+        _packetArray = [NSMutableArray arrayWithCapacity:35];
     }
     return self;
 }
@@ -96,15 +98,16 @@
 - (bool) isCapturing {
     return captureActive;
 }
+
 - (void) emptyArray {
-    [packetArray removeAllObjects];
+    [_packetArray removeAllObjects];
 }
 
 - (void) stopCapture {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     if (tempDev->captureActive()) {
         tempDev->stopCapture();
-        [self closeDev];
+//        [self closeDev];
         return;
     }
     NSLog(@"Device already closed");
@@ -136,22 +139,38 @@
 }
 
 - (void)addToPacketArray:(PcapCppPacketWrappper*) aPacket {
-    [packetArray addObject:aPacket];
+    [_packetArray addObject:aPacket];
 //    NSLog(@"array is size: %lu ",(unsigned long)packetArray.count);
 }
 
 - (NSMutableArray<PcapCppPacketWrappper*>*) getPacketArray {
-    return packetArray;
+    return _packetArray;
 }
 
+- (void) savePcapFile : (NSString *) filePath {
+    std::string filePathTemp = std::string([filePath UTF8String]);
+    pcpp::PcapNgFileWriterDevice writer(filePathTemp);
+    writer.open();
+    // try to open the file for writing
+    if (!writer.open()){
+        std::cerr << "Cannot open" << filePathTemp << "for writing" << std::endl;
+        return;
+    }
+    for (PcapCppPacketWrappper* packet in _packetArray) {
+         pcpp::RawPacket *aPacketPtr = (pcpp::RawPacket*)packet.getRawPacket;
+//         pcpp::RawPacket aRawPacket;
+        writer.writePacket(*aPacketPtr);
+    }
+    writer.close();
+}
 
 //Add to packet array when packet arrives
-//TODO: Fix memory leak of nonRawPacket
 
  static void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *cookie) {
      PcapCppDevWrapper *aDev = (__bridge PcapCppDevWrapper*)cookie;
-     pcpp::Packet *nonRawPacket;
-     nonRawPacket = new pcpp::Packet(rawPacket);
+     pcpp::RawPacket* tempRawCopy = new pcpp::RawPacket;
+     std::memcpy((void*)tempRawCopy,(void*)rawPacket,sizeof(pcpp::RawPacket));
+     pcpp::Packet *nonRawPacket = new pcpp::Packet(tempRawCopy,true);
      PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithPacket:nonRawPacket];
      [aDev addToPacketArray:newPacketWrapper];
 }

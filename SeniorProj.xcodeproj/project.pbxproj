@@ -17,6 +17,7 @@
 		7F49996226F51D82002DB095 /* SeniorProjTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49996126F51D82002DB095 /* SeniorProjTests.swift */; };
 		7F49996D26F51D82002DB095 /* SeniorProjUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49996C26F51D82002DB095 /* SeniorProjUITests.swift */; };
 		7F49997D26F53277002DB095 /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49997C26F53277002DB095 /* NetworkInterface.swift */; };
+		7F4B8333273F093F00316F96 /* PacketArrayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4B8332273F093F00316F96 /* PacketArrayManager.swift */; };
 		7F50F357270E870D00A5BAD0 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50F356270E870D00A5BAD0 /* TestView.swift */; };
 		7F733A6C270CE9DA00AD1B03 /* PcapCppDevWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F733A6B270CE9DA00AD1B03 /* PcapCppDevWrapper.mm */; };
 		7F8E3B6C26F98EC400D68A86 /* PcapMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F8E3B6A26F98EC400D68A86 /* PcapMain.cpp */; };
@@ -80,6 +81,7 @@
 		7F49996C26F51D82002DB095 /* SeniorProjUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjUITests.swift; sourceTree = "<group>"; };
 		7F49996E26F51D82002DB095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F49997C26F53277002DB095 /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
+		7F4B8332273F093F00316F96 /* PacketArrayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketArrayManager.swift; sourceTree = "<group>"; };
 		7F50F356270E870D00A5BAD0 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		7F733A6A270CE97800AD1B03 /* PcapCppDevWrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapCppDevWrapper.hpp; sourceTree = "<group>"; };
 		7F733A6B270CE9DA00AD1B03 /* PcapCppDevWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PcapCppDevWrapper.mm; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				7F49997C26F53277002DB095 /* NetworkInterface.swift */,
 				7F3D262E2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift */,
+				7F4B8332273F093F00316F96 /* PacketArrayManager.swift */,
 			);
 			path = SwiftClasses;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				7F3D262F2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift in Sources */,
 				7F49997D26F53277002DB095 /* NetworkInterface.swift in Sources */,
 				7FF4259D2711185E00210F28 /* CaptureView.swift in Sources */,
+				7F4B8333273F093F00316F96 /* PacketArrayManager.swift in Sources */,
 				7F40F5832710E6B800FE8995 /* PcapCppPacketWrapper.mm in Sources */,
 				7F8E3B7026F992CE00D68A86 /* PcapMainWrapper.mm in Sources */,
 				7F49995126F51D81002DB095 /* MainView.swift in Sources */,

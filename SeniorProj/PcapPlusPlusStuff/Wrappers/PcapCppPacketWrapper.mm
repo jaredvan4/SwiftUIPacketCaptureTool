@@ -62,5 +62,10 @@
     pcpp::RawPacket *rawPacket = tempPacket->getRawPacket();
     return @"Placeholder";
 }
+- (void *) getRawPacket {
+    pcpp::Packet *tempPacket = (pcpp::Packet*) packet;
+    pcpp::RawPacket *rawPacket = tempPacket->getRawPacket();
+    return (void *)rawPacket;
+}
 
 @end

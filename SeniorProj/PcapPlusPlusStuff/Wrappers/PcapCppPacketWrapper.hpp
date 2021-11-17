@@ -18,5 +18,6 @@
 - (NSString *) getTimeStamp;
 - (NSString *) getPacketType;
 - (NSString *) getProtocolType;
+- (void *) getRawPacket;
 - (void) dealloc;
 @end

@@ -11,18 +11,21 @@ import SwiftUI
 struct CaptureWindowView: View {
     var aDevice : PcapCppDevWrapper
     var packets : NSMutableArray
+    let fileTypes = ["pcapng"]
+    var packetManager : PacketArrayManager? = nil
+    @State var captureActive = false
+    @State var tempPacketArr : [PcapCppPacketWrappper]
     @State private var showExitAlert = false
     @Binding var captureWindowIsOpen: Bool
     var body: some View {
         GroupBox() {
             Text("Packets")
-            if (self.packets.count > 0) {
             ScrollView(.horizontal) {
-                ForEach(0..<packets.count) { _packet in
-                    Text("sda")
+                ForEach(tempPacketArr.indices) { index in
+                    Text("dsdasd")
                 }
             }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity, alignment: .center)
-             }
+             
             
         }.toolbar {
             ToolbarItem(placement:.principal) {
@@ -41,6 +44,14 @@ struct CaptureWindowView: View {
             }
             ToolbarItem(placement: .principal) {
                 Button(action: {
+                                saveAsFile()
+                                
+                            }) {
+                                Text("Save as file").foregroundColor(Color.black)
+                            }.background(Color.green).cornerRadius(8).disabled(captureActive)
+            }
+            ToolbarItem(placement: .principal) {
+                Button(action: {
                     showExitAlert = true
                 }) {
                     Text("exit").foregroundColor(Color.white).cornerRadius(8)
@@ -49,8 +60,8 @@ struct CaptureWindowView: View {
                     Alert(
                         title: Text("Exit"), message: Text("Are you sure you want to exit?\nThis will stop any active capture on this device & any unsaved data will be lost"), primaryButton: .destructive(Text("Yes")) {
                             withAnimation() {
-                                aDevice.stopCapture()
-                                aDevice.emptyArray()
+                                self.stopCapture()
+                                self.emptyPacketArray()
                                 captureWindowIsOpen.toggle()
                             }
                         },secondaryButton: .cancel(Text("No"))
@@ -71,17 +82,20 @@ struct CaptureWindowView: View {
     //constructor for view
         init (device : PcapCppDevWrapper, captureWindowIsOpen: Binding <Bool>) {
             self.aDevice = device
-            self.packets =  aDevice.getPacketArray()
+            self.packets = aDevice.packetArray
             self._captureWindowIsOpen = captureWindowIsOpen
+            self.tempPacketArr = [PcapCppPacketWrappper]()
+            self.packetManager = PacketArrayManager(dev: self.aDevice, packetArray: self.tempPacketArr)
         }
     
     func stopCapture() -> Void {
         aDevice.stopCapture()
+        captureActive = false
     }
     
     func startCapture () -> Bool {
         if (aDevice.openDev()) {
-            Alert(title: Text("Attempting to open device"), message: Text("Failed to open device :("),primaryButton: .destructive(Text("Ok")),secondaryButton:.cancel() )
+            captureActive = true
             return true
         }
         return true
@@ -90,6 +104,18 @@ struct CaptureWindowView: View {
     //sends message to dev wrapper to dealloc all packets
     func emptyPacketArray () -> Void {
         self.aDevice.emptyArray()
+    }
+    
+    //TODO: Exclude user from saving any filetype besides .pcapng
+    func saveAsFile () -> Bool {
+        var filePath = ""
+        let panel = NSSavePanel()
+//        panel.allowedContentTypes = fileTypes
+        if panel.runModal() == .OK {
+            filePath = panel.url?.path ?? ""
+            self.aDevice.savePcapFile(filePath)
+        }
+        return true
     }
 }
 
