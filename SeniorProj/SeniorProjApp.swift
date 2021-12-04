@@ -11,12 +11,14 @@ import SwiftUI
 
 @main
 struct SeniorProjApp: App {
+    @State var openFileViewingWindow = false
     @State var filePath = ""
     @State var showFileChooser = false
     var mainPcap: PcapMainWrapper = PcapMainWrapper()
     var body: some Scene {
         WindowGroup {
             MainView(pcapMain: mainPcap)
+            
         }.commands {
             CommandGroup(replacing: .newItem) {
                 Button("open pcap file") {
@@ -24,21 +26,20 @@ struct SeniorProjApp: App {
                     panel.allowsMultipleSelection = false
                     panel.canChooseDirectories = false
                     if panel.runModal() == .OK {
-                        self.filePath = panel.url?.absoluteString ?? ""
+                        self.filePath = panel.url?.path ?? ""
                         mainPcap.openPcapFile(self.filePath)
                     }
                 }
                 Button("Save as Pcap File") {
                     
                 }
-                            .disabled(true)
+                .disabled(true)
             }
             
         }
-        WindowGroup() {
-            Text("dsadsa")
+        
         }
         
     }
-}
+
 

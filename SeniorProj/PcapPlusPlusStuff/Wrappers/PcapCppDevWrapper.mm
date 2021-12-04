@@ -171,7 +171,6 @@
      pcpp::Packet *nonRawPacket = new pcpp::Packet(tempRawCopy);
      PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithPacket:nonRawPacket];
      [aDev addToPacketArray:newPacketWrapper];
-     newPacketWrapper.getDescriptionAsLayers;
 }
 
 @end

@@ -23,9 +23,19 @@
     delete (pcpp::Packet *)packet;
 }
 
+- (NSInteger) getPacketsDropped {
+    pcpp::Packet *tempPacket = (pcpp::Packet*) packet;
+    return 0;
+}
 - (NSInteger) getLength {
     pcpp::Packet *tempPacket = (pcpp::Packet*) packet;
     return tempPacket->getRawPacket()->getRawDataLen();
+}
+
+- (NSString *)getRawData {
+    pcpp::Packet *tempPacket = (pcpp::Packet*) packet;
+    tempPacket->getRawPacket()->getRawData();
+    return @"placeholder";
 }
 
 - (NSString *) getDescription {

@@ -14,6 +14,8 @@
 - (id) initWithPacket: (void *) aPacket;
 - (NSString *) getDescription;
 - (NSInteger) getLength;
+- (NSString *) getRawData;
+- (NSInteger) getPacketsDropped;
 - (NSMutableArray*) getDescriptionAsLayers;
 - (NSString *) getTimeStamp;
 - (NSString *) getPacketType;

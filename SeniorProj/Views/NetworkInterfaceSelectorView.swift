@@ -10,7 +10,6 @@ import SwiftUI
 //TODO: Disable device picker when active cpature 
 struct NetworkInterfaceSelectorView : View {
     @State private var searchQuery = ""
-//    @StateObject var captureViewIsOpenGlobal = GlobalIIsCaptureWindowIsOpen()
     let devices : [PcapCppDevWrapper]
     var body: some View {
         
@@ -30,7 +29,7 @@ struct NetworkInterfaceSelectorView : View {
                     }
                 }
             }
-        }.navigationTitle(Text("Senior proj"))
+        }.navigationTitle(Text(""))
         
     }
 }

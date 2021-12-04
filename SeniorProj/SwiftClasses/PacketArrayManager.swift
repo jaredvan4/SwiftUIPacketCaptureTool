@@ -8,16 +8,24 @@
 import Foundation
 import SwiftUI
 
-class PacketArrayManager: NSObject {
+class PacketArrayManager: ObservableObject {
     var dev : PcapCppDevWrapper
-    var array : [PcapCppPacketWrappper]
-    init(dev: PcapCppDevWrapper, packetArray : [PcapCppPacketWrappper]) {
+    var timer : Timer? = Timer()
+    @Published var tempPacketArr = [PcapCppPacketWrappper]()
+
+    init(dev: PcapCppDevWrapper) {
         self.dev = dev
-        self.array = packetArray
-        super.init()
-        self.dev.addObserver(self,forKeyPath: #keyPath(PcapCppDevWrapper.packetArray),options: [.new],context: nil)
+   }
+    
+    func startTimerFunction() -> Void {
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.tempPacketArr = self.dev.getPacketArray() as NSArray as! [PcapCppPacketWrappper]
+            })
     }
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
+    func stopTimerFunction() -> Void {
+        self.timer?.invalidate()
     }
+    //    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    //
+    //    }
 }
