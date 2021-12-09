@@ -19,13 +19,16 @@
 - (id) initWithDev:(void *) aDev;
 -(void)addToPacketArray:(PcapCppPacketWrappper*) aPacket;
 - (void)emptyArray;
+- (NSString *) getLinkLayerType;
+- (NSInteger) getMTU;
 - (NSString *) getName;
+- (NSString *) getMode;
 - (NSString *) getIPv4Address;
 - (NSString *) getDevDescription;
 - (NSString *) getMacAddress;
 - (Boolean) openDev;
 - (NSMutableArray<PcapCppPacketWrappper*>*) getPacketArray;
-- (bool) isCapturing;
+- (Boolean) isCapturing;
 - (void) startCapture;
 - (void) closeDev;
 - (void) stopCapture;

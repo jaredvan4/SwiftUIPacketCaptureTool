@@ -52,6 +52,7 @@
 
 - (NSString *) getDescription {
     pcpp::Packet *tempPacket = (pcpp::Packet*) packet;
+    std::cout << "obj type" << tempPacket->getRawPacket()->getObjectType();
     NSString *description = [NSString stringWithCString: tempPacket->toString().c_str() encoding:[NSString defaultCStringEncoding]];
     return description;
 }
@@ -114,7 +115,7 @@
     pcpp::Packet *tempPacket = (pcpp::Packet*) packet;
     pcpp::RawPacket *rawPacket = tempPacket->getRawPacket();
     timespec timeStampStruct =  rawPacket->getPacketTimeStamp();
-    std::string timeStr = std::to_string(timeStampStruct.tv_sec);
+    std::string timeStr = std::to_string(timeStampStruct.tv_nsec);
     NSString *finalTimeStr = [NSString stringWithCString: timeStr.c_str() encoding:[NSString defaultCStringEncoding]];
     return finalTimeStr;
 }
@@ -156,15 +157,19 @@
     if (aProtocol == pcpp::IPv6) {
         return @"IPv6";
     }
+    
     if (aProtocol == pcpp::IPv4) {
         return @"IPv4";
     }
+    
     if (aProtocol == pcpp::ARP_REPLY) {
         return @"ARP reply";
     }
+    
     if (aProtocol == pcpp::ARP_REQUEST) {
         return @"ARP request";
     }
+    
     if (aProtocol == pcpp::ARP)
         return @"ARP";
     
@@ -199,7 +204,11 @@
     if (aProtocol == pcpp::BGP) {
         return @"BGP";
     }
-    std::cout << "Uknown" << aProtocol << "\n";
+    if (aProtocol == pcpp::ICMP) {
+        return @"ICMP";
+    }
+    
+    std::cout << "Unknown" << aProtocol << "\n";
     return @"Unknown";
 }
 - (void *) getRawPacket {

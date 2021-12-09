@@ -10,6 +10,7 @@ import SwiftUI
 //TODO: Disable device picker when active cpature 
 struct NetworkInterfaceSelectorView : View {
     @State private var searchQuery = ""
+    @State var captureWindowisOpenInOther = false
     let devices : [PcapCppDevWrapper]
     var body: some View {
         
@@ -20,10 +21,10 @@ struct NetworkInterfaceSelectorView : View {
                     HStack {
                         Divider()
                         VStack {
-                            NavigationLink(                                destination: NetworkInterfaceDetailsView(device: devices[index]),
+                            NavigationLink(                                destination: NetworkInterfaceDetailsView(device: devices[index], captureWindowIsopenInOther: $captureWindowisOpenInOther),
                                                                            label: {
                                 Text(devices[index].getName())
-                            })
+                            }).disabled(captureWindowisOpenInOther)
                             
                         }//vstack ends here
                     }

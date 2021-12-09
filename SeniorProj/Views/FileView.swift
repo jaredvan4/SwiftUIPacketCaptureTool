@@ -11,7 +11,9 @@ struct FileView: View {
     var packets: [PcapCppPacketWrappper]
     @Binding var showPackets : Bool
     @State var currentlySelected : Int = 0
-    var protocols = ["TCP", "SSH", "HTPP", "HTTP Request","HTTP", "HTTP Response","SSL","DNS","UDP","IPv6", "ARP", "ARP reply" ,"ARP request","IPv4","DHCP", "IMGP", "BGP", "IGMPv1" , "IGMPv2", "IGMPv3", "None"]
+    var protocols = ["TCP", "SSH", "HTPP", "HTTP Request","HTTP", "HTTP Response","SSL","DNS","UDP","IPv6", "ARP", "ARP reply" ,"ARP request","IPv4","DHCP", "IMGP", "BGP", "IGMPv1" , "IGMPv2", "IGMPv3", "ICMP", "None"]
+    var sizes = [1,5,20,30, 50, 80, 100]
+    @State var selectedSize : Int = 1
     @State var selectedFilterType = "None"
    
     var body: some View {
@@ -39,7 +41,7 @@ struct FileView: View {
                                 HStack {
                                     Text(" Packet No: \(String(index + 1))").font(.subheadline).frame( alignment: .trailing)
                                     Divider().frame(width:10)
-                                    Text ("Time :  \(String(packets[index].getTimeStamp()))").font(.subheadline).frame( alignment: .trailing)
+                                    Text ("Arrival Time :  \(String(packets[index].getTimeStamp()))").font(.subheadline).frame( alignment: .trailing)
                                     Divider().foregroundColor(Color.white).frame(width:10)
                                     Text ("Total packet len: \(String(packets[index].getRawDataLength())) ")
                                     Divider().frame(width:10)
@@ -59,16 +61,26 @@ struct FileView: View {
                     }
                 
                     ToolbarItem(placement: .principal) {
-                        Text("Filer by protocol:")
+                        Text("Select by protocol:")
                     }
                     
                     ToolbarItem(placement: .principal) {
-                        Picker("Filter By value", selection: $selectedFilterType ) {
+                        Picker("Filter By value", selection: $selectedFilterType) {
                             ForEach(protocols, id: \.self) {
                                 Text($0)
                             }
                         }
                     }
+//                    ToolbarItem(placement: .principal) {
+//                        Text("Select by packet size:")
+//                    }
+//                    ToolbarItem(placement: .principal) {
+//                        Picker("Filter By size", selection: $selectedSize) {
+//                            ForEach(sizes, id: \.self) {
+//                                Text()
+//                            }
+//                        }
+//                    }
                     ToolbarItem(placement:.principal) {
                         Button(action: {
                             showPackets.toggle()}) {
@@ -82,7 +94,6 @@ struct FileView: View {
                     GeometryReader { detailsGeometry in
                         HSplitView {
                             GroupBox {
-//                                Spacer().frame(height: detailsGeometry.size.h)
                                 Text (" Frame length: \(String(packets[self.currentlySelected].getFrameLength())) ")
                                 Text("Link type : \(String(packets[self.currentlySelected].getLinkType()))")
                                 LayerView(layers: packets[currentlySelected].getDescriptionAsLayers() as! [NSString])

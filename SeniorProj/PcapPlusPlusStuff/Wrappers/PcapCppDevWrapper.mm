@@ -30,12 +30,32 @@
     NSString *str  = [NSString stringWithCString:tempDev->getName().c_str() encoding:[NSString defaultCStringEncoding]];
     return str;
 }
-- (NSString *) getMTU {
-    return @"sadas";
+- (NSInteger) getMTU {
+    pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
+     int mtu = tempDev->getMtu();
+    return mtu;
+}
+
+- (NSString *) getMode {
+    pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
+    if (tempDev->Promiscuous) {
+        return @"Promiscuous";
+    } else  {
+        return @"Normal";
+    }
 }
 
 - (NSString *) getLinkLayerType {
-    return @"sdasda";
+    pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
+    pcpp::LinkLayerType aType = tempDev->getLinkType();
+    std::cout << aType << "\n";
+    if (aType == 0) {
+        return @"Loopback";
+    }
+    if (aType == pcpp::LINKTYPE_ETHERNET) {
+        return @"Ethernet";
+    }
+    return @"Unknown";
 }
 - (NSString *) getIPv4Address {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
@@ -62,10 +82,11 @@
 - (Boolean) openDev {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     Boolean result = tempDev->open();
-    if(result == true) {
+    if (result) {
         [self startCapture];
         return true;
     }
+    
     return false;
 }
 
@@ -100,7 +121,7 @@
 }
 
 
-- (bool) isCapturing {
+- (Boolean) isCapturing {
     return captureActive;
 }
 
@@ -153,12 +174,6 @@
 //   try to open the file for writing
     for (PcapCppPacketWrappper* aPacketWrapper in packetArray) {
         std::cout << "writing packets\n";
-//         pcpp::RawPacket *aPacketPtr = (pcpp::RawPacket*)aPacketWrapper.getRawPacket;
-//        pcpp::RawPacket* tempRawCopy = new pcpp::RawPacket();
-//        tempRawCopy->setRawData(aPacketPtr->getRawData(), aPacketPtr->getRawDataLen(), aPacketPtr->getPacketTimeStamp(),aPacketPtr->getLinkLayerType(),aPacketPtr->getFrameLength());
-//        pcpp::RawPacket lastTemp(tempRawCopy);
-//        pcpp::Packet aTempPacket(tempRawCopy);
-//        pcpp::RawPacket *lastCopyOfRaw = new pcpp::RawPacket(*tempRawCopy);
         pcpp::RawPacket *aPacketPtr = (pcpp::RawPacket*)aPacketWrapper.getRawPacket;
         std::cout << "a description of file being saved : " <<  aPacketWrapper.getDescription << "\n";
                writer.writePacket(*aPacketPtr);
@@ -168,8 +183,8 @@
 }
 
 
-//Add to packet array when packet arrives
 
+//Add to packet array when packet arrives
  static void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *cookie) {
      PcapCppDevWrapper *aDev = (__bridge PcapCppDevWrapper*)cookie;
      pcpp::RawPacket* tempRawCopy = new pcpp::RawPacket;

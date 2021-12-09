@@ -106,7 +106,7 @@ struct CaptureWindowView: View {
                     }) {
                         Text("Discard Packets").foregroundColor(Color.white).cornerRadius(8)
                         
-                    }.alert(isPresented: $showPacketEmptyAlert){
+                    }.disabled(captureActive).alert(isPresented: $showPacketEmptyAlert){
                         Alert(
                             title: Text("Exit"), message: Text("Are you sure you want to Discard packets?\nThis will stop any active capture on this device & any unsaved data will be lost"), primaryButton: .destructive(Text("Yes")) {
                                 withAnimation() {
