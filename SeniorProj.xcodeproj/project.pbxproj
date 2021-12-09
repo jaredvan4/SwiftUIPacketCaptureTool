@@ -30,6 +30,7 @@
 		7FAC094E270B66F0004754B2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAA24DC270A9FC100324BD2 /* CoreFoundation.framework */; };
 		7FAC0950270B66FB004754B2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FAC094F270B66FB004754B2 /* SystemConfiguration.framework */; };
 		7FCFF7A0272A3B88009829A0 /* PcapThreadCaptureHolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FCFF79E272A3B88009829A0 /* PcapThreadCaptureHolder.cpp */; };
+		7FD3E786275DC735000BF21D /* LayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD3E785275DC735000BF21D /* LayerView.swift */; };
 		7FE8F44726F58194005BC7B6 /* NetworkInterfaceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */; };
 		7FF4259D2711185E00210F28 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF4259C2711185E00210F28 /* CaptureView.swift */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		7FAC094F270B66FB004754B2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7FCFF79E272A3B88009829A0 /* PcapThreadCaptureHolder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PcapThreadCaptureHolder.cpp; sourceTree = "<group>"; };
 		7FCFF79F272A3B88009829A0 /* PcapThreadCaptureHolder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PcapThreadCaptureHolder.hpp; sourceTree = "<group>"; };
+		7FD3E785275DC735000BF21D /* LayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerView.swift; sourceTree = "<group>"; };
 		7FE8F44626F58194005BC7B6 /* NetworkInterfaceSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterfaceSelectorView.swift; sourceTree = "<group>"; };
 		7FF4259C2711185E00210F28 /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +156,7 @@
 				7FF4259C2711185E00210F28 /* CaptureView.swift */,
 				7F9E028A2729F97300616F38 /* CaptureWindowView.swift */,
 				7F3F2F91275B2BB6001015B4 /* FileView.swift */,
+				7FD3E785275DC735000BF21D /* LayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				7F9E028B2729F97300616F38 /* CaptureWindowView.swift in Sources */,
 				7F8E3B6C26F98EC400D68A86 /* PcapMain.cpp in Sources */,
 				7F3D262F2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift in Sources */,
+				7FD3E786275DC735000BF21D /* LayerView.swift in Sources */,
 				7F3F2F92275B2BB6001015B4 /* FileView.swift in Sources */,
 				7F49997D26F53277002DB095 /* NetworkInterface.swift in Sources */,
 				7FF4259D2711185E00210F28 /* CaptureView.swift in Sources */,

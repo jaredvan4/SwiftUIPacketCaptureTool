@@ -20,7 +20,7 @@
     if (self) {
         dev = aDev;
         captureActive = false;
-        _packetArray = [NSMutableArray arrayWithCapacity:35];
+        packetArray = [NSMutableArray arrayWithCapacity:35];
     }
     return self;
 }
@@ -30,7 +30,13 @@
     NSString *str  = [NSString stringWithCString:tempDev->getName().c_str() encoding:[NSString defaultCStringEncoding]];
     return str;
 }
+- (NSString *) getMTU {
+    return @"sadas";
+}
 
+- (NSString *) getLinkLayerType {
+    return @"sdasda";
+}
 - (NSString *) getIPv4Address {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     std::string tempStr = tempDev->getIPv4Address().toString();
@@ -99,7 +105,7 @@
 }
 
 - (void) emptyArray {
-    [_packetArray removeAllObjects];
+    [packetArray removeAllObjects];
 }
 
 - (void) stopCapture {
@@ -125,42 +131,42 @@
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     tempDev->startCapture(onPacketArrives,(void *)CFBridgingRetain(self));
     return;
-//    while (captureActive) {
-//    }
-//    tempDev->stopCapture();
-//    packetArray = [NSMutableArray arrayWithCapacity:packetVector.size()];
-//    for (pcpp::RawPacket *packet : packetVector) {
-//        PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithInt:packet->getRawDataLen()];
-//        [packetArray addObject:newPacketWrapper];
-//        NSLog(@"%i",packet->getRawDataLen());
-//    }
 }
 
 - (void)addToPacketArray:(PcapCppPacketWrappper*) aPacket {
-    [_packetArray addObject:aPacket];
+    [packetArray addObject:aPacket];
 //    NSLog(@"array is size: %lu ",(unsigned long)packetArray.count);
 }
 
 - (NSMutableArray<PcapCppPacketWrappper*>*) getPacketArray {
-    return _packetArray;
+    return packetArray;
 }
 
 - (Boolean) savePcapFile : (NSString *) filePath {
     std::string filePathTemp = std::string([filePath UTF8String]);
-    pcpp::PcapNgFileWriterDevice writer(filePathTemp);
-    writer.open();
+    pcpp::PcapFileWriterDevice writer(filePathTemp);
     // try to open the file for writing
     if (!writer.open()){
         std::cerr << "Cannot open" << filePathTemp << "for writing" << std::endl;
         return false;
     }
-    for (PcapCppPacketWrappper* packet in _packetArray) {
-         pcpp::RawPacket *aPacketPtr = (pcpp::RawPacket*)packet.getRawPacket;
-         writer.writePacket(*aPacketPtr);
+//   try to open the file for writing
+    for (PcapCppPacketWrappper* aPacketWrapper in packetArray) {
+        std::cout << "writing packets\n";
+//         pcpp::RawPacket *aPacketPtr = (pcpp::RawPacket*)aPacketWrapper.getRawPacket;
+//        pcpp::RawPacket* tempRawCopy = new pcpp::RawPacket();
+//        tempRawCopy->setRawData(aPacketPtr->getRawData(), aPacketPtr->getRawDataLen(), aPacketPtr->getPacketTimeStamp(),aPacketPtr->getLinkLayerType(),aPacketPtr->getFrameLength());
+//        pcpp::RawPacket lastTemp(tempRawCopy);
+//        pcpp::Packet aTempPacket(tempRawCopy);
+//        pcpp::RawPacket *lastCopyOfRaw = new pcpp::RawPacket(*tempRawCopy);
+        pcpp::RawPacket *aPacketPtr = (pcpp::RawPacket*)aPacketWrapper.getRawPacket;
+        std::cout << "a description of file being saved : " <<  aPacketWrapper.getDescription << "\n";
+               writer.writePacket(*aPacketPtr);
     }
     writer.close();
     return true;
 }
+
 
 //Add to packet array when packet arrives
 

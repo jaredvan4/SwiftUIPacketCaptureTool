@@ -13,7 +13,12 @@
 }
 - (id) initWithPacket: (void *) aPacket;
 - (NSString *) getDescription;
-- (NSInteger) getLength;
+- (NSInteger) getRawDataLength;
+- (NSString *) getSrcAddr;
+- (NSString *) getLinkType;
+- (NSInteger) getFullLength;
+- (NSInteger) getFrameLength;
+- (NSString *) getFirstLayerType;
 - (NSString *) getRawData;
 - (NSInteger) getPacketsDropped;
 - (NSMutableArray*) getDescriptionAsLayers;

@@ -13,7 +13,6 @@ struct MainView: View {
     var body: some View {
         VSplitView {
             NetworkInterfaceSelectorView(devices:devicesArray)
-//            CaptureWindowView()
         }.frame(minWidth: 800, minHeight: 500).frame(width: nil)
     }
     

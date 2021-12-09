@@ -7,18 +7,24 @@
 
 import SwiftUI
 import Foundation
+import UniformTypeIdentifiers
 //TODO: Packet array not updating dynamically
 
 struct CaptureWindowView: View {
     var aDevice : PcapCppDevWrapper
     var packets : NSMutableArray
-    let fileTypes = ["pcapng"]
+    private var fileTypes = [UTType("com.app.pcapng")]
     var timer : Timer? = Timer()
     var packetManager : PacketArrayManager? = nil
     @State private var isAnimating = false
+    @State private var areTherePackets:Bool = false
     @State var captureActive = false
     @State var showPackets = false
+    @State var noOfPacketsCaptured:Int = 0
     @State private var showExitAlert = false
+    @State private var showSavedAlert = false
+    @State private var showPacketEmptyAlert = false
+    @State private var showDidNotStartCapturingAlert = false
     @Binding var captureWindowIsOpen: Bool
     var body: some View {
         if showPackets && !captureActive {
@@ -29,9 +35,11 @@ struct CaptureWindowView: View {
             GroupBox() {
                 Group {
                 if !captureActive {
-                    Text("No capture active on device \(self.aDevice.getName())").font(.system(size: 25))
+                    Text("No capture active on device \(self.aDevice.getName())").font(.system(size: 23))
+                    Text("No of Packets captured : \(noOfPacketsCaptured)").font(.system(size: 23))
+
                 } else {
-                    Text("Capture active on device \(self.aDevice.getName())").font(.system(size: 25))
+                    Text("Capture active on device \(self.aDevice.getName())").font(.system(size: 23))
                     Circle()
                                 .trim(from: 0, to: 0.7)
                                 .stroke(Color.green, lineWidth: 5)
@@ -53,11 +61,15 @@ struct CaptureWindowView: View {
             }.frame(maxWidth: .infinity, maxHeight: .infinity).toolbar {
                 ToolbarItem(placement:.principal) {
                     Button(action: {
-                            startCapture()
+                        if !startCapture() {
+                            showDidNotStartCapturingAlert = true
+                        }
                         
                     }) {
                             Text("Start Capture").foregroundColor(Color.black)
-                        }.background(Color.green).cornerRadius(8)
+                        }.background(Color.green).cornerRadius(8).alert(isPresented: self.$showDidNotStartCapturingAlert) {
+                            Alert(title: Text(""), message: Text("Capture not supported on this device!"), dismissButton: .destructive(Text("ok")))
+                        }
                 }
                 ToolbarItem(placement: .principal ){
                     Button(action: {
@@ -70,11 +82,14 @@ struct CaptureWindowView: View {
                 }
                 ToolbarItem(placement: .principal) {
                     Button(action: {
-                        saveAsFile()
-                        
+                        if saveAsFile() {
+                            self.showSavedAlert = true
+                        }
                     }) {
                         Text("Save as file").foregroundColor(Color.black)
-                    }.background(Color.green).cornerRadius(8).disabled(captureActive)
+                    }.background(Color.green).cornerRadius(8).disabled(captureActive || noOfPacketsCaptured <= 0).alert(isPresented: self.$showSavedAlert) {
+                        Alert(title: Text("success"), message: Text("Saved pcapng file succesfully!"), dismissButton: .destructive(Text("ok")))
+                    }
                 }
                 ToolbarItem(placement: .principal) {
                     Button(action: {
@@ -83,8 +98,29 @@ struct CaptureWindowView: View {
                         }
                     }) {
                         Text("View Packets").foregroundColor(Color.black)
-                    }.background(Color.green).cornerRadius(8).disabled(captureActive)
+                    }.background(Color.green).cornerRadius(8).disabled(captureActive || !areTherePackets)
                 }
+                ToolbarItem(placement: .principal) {
+                    Button(action: {
+                        showPacketEmptyAlert = true
+                    }) {
+                        Text("Discard Packets").foregroundColor(Color.white).cornerRadius(8)
+                        
+                    }.alert(isPresented: $showPacketEmptyAlert){
+                        Alert(
+                            title: Text("Exit"), message: Text("Are you sure you want to Discard packets?\nThis will stop any active capture on this device & any unsaved data will be lost"), primaryButton: .destructive(Text("Yes")) {
+                                withAnimation() {
+                                    self.stopCapture()
+                                    self.emptyPacketArray()
+                                    self.noOfPacketsCaptured = 0
+                                    self.areTherePackets = false
+                                }
+                            },secondaryButton: .cancel(Text("No"))
+                            
+                        )
+                    }
+                }
+                
                 ToolbarItem(placement: .principal) {
                     Button(action: {
                         showExitAlert = true
@@ -97,6 +133,7 @@ struct CaptureWindowView: View {
                                 withAnimation() {
                                     self.stopCapture()
                                     self.emptyPacketArray()
+                                    self.areTherePackets = false
                                     captureWindowIsOpen.toggle()
                                 }
                             },secondaryButton: .cancel(Text("No"))
@@ -104,6 +141,7 @@ struct CaptureWindowView: View {
                         )
                     }
                 }
+            
             }.frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
     }
@@ -119,6 +157,10 @@ struct CaptureWindowView: View {
     func stopCapture() -> Void {
         aDevice.stopCapture()
         captureActive = false
+        self.noOfPacketsCaptured = aDevice.getPacketArray().count
+        if (aDevice.getPacketArray().count > 0) {
+            self.areTherePackets = true
+        }
         self.packetManager?.stopTimerFunction()
         
     }
@@ -128,10 +170,10 @@ struct CaptureWindowView: View {
     func startCapture () -> Bool {
         if (aDevice.openDev()) {
             captureActive = true
-//            self.packetManager?.startTimerFunction()
             return true
         }
-        return true
+        captureActive = false
+        return false
     }
     
     //sends message to dev wrapper to dealloc all packets
@@ -143,7 +185,8 @@ struct CaptureWindowView: View {
     func saveAsFile () -> Bool {
         var filePath = ""
         let panel = NSSavePanel()
-        //        panel.allowedContentTypes = fileTypes
+//        panel.allowedContentTypes = self.fileTypes
+//        panel.allowsOtherFileTypes = false
         if panel.runModal() == .OK {
             filePath = panel.url?.path ?? ""
             return self.aDevice.savePcapFile(filePath)
@@ -155,8 +198,6 @@ struct CaptureWindowView: View {
     func startPacketUpdateTimer () -> Void {
         
     }
-    
-    
 }
 
 //struct CaptureWindowView_Previews: PreviewProvider {

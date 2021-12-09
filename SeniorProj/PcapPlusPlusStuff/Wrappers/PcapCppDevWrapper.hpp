@@ -12,8 +12,8 @@
 @interface PcapCppDevWrapper : NSObject {
     void* dev;
     bool captureActive;
+    NSMutableArray<PcapCppPacketWrappper*>* packetArray;
 }
-@property (nonatomic) NSMutableArray<PcapCppPacketWrappper*>* packetArray;
 
 
 - (id) initWithDev:(void *) aDev;
