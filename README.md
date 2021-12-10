@@ -4,7 +4,7 @@
 ### Utilizes SwiftUI & PcapPlusPlus frameworks, with full native support for Apple Silicon
 # **Requirements**
  * Xcode 13.0 or higher
- * Homebrew package manager if installing pre-compiled binaries (preferred way of installed PcapPlusPlus)
+ * Homebrew package manager if installing pre-compiled binaries (preferred way of installing PcapPlusPlus)
  * Xcode command line tools (install by running *" xcode-select --install
 "*)
  * macOS Big Sur or higher (Assuming one is targeting arm64)
