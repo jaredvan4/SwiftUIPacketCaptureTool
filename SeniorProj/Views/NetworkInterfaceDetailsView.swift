@@ -28,24 +28,17 @@ struct NetworkInterfaceDetailsView: View {
                     withAnimation(){
                         captureWindowIsopenInOther = true
                         captureWindowIsOpen.toggle()
-//                        captureWindowIsOpenGlobal.captureWindowIsOpen.toggle()
+
                     }
                 }) {
                     Text("Open capture window")
                 }
-                //            Button(action: {
-                //                openDevice()}) {
-                //                Text("Open Device")
-                //            }
-                //            Button(action: {stopCapture()}) {
-                //                Text("Stop packet capture")
-                //            }
                 
             }.onAppear {
                 captureWindowIsopenInOther = false
             }
         }
-        //        .disabled(device.isCapturing())
+        
         
     }
     
@@ -59,7 +52,7 @@ struct NetworkInterfaceDetailsView: View {
         }
     }
     
-    //not needed?
+    
     func stopCapture() -> Void {
         device.stopCapture()
         captureWindowIsOpen.toggle()

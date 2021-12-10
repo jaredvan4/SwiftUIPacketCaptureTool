@@ -22,6 +22,7 @@ struct CaptureWindowView: View {
     @State var showPackets = false
     @State var noOfPacketsCaptured:Int = 0
     @State private var showExitAlert = false
+    @State private var showFailedToSaveAlert = false
     @State private var showSavedAlert = false
     @State private var showPacketEmptyAlert = false
     @State private var showDidNotStartCapturingAlert = false
@@ -54,7 +55,9 @@ struct CaptureWindowView: View {
                             
                         
                 }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }.frame(maxWidth: .infinity, maxHeight: .infinity).alert(isPresented: self.$showFailedToSaveAlert) {
+                    Alert(title: Text("Failed to save"), message: Text("Invalid file extension"), dismissButton: .destructive(Text("ok")))
+                }
                 
                 
                 
@@ -79,6 +82,7 @@ struct CaptureWindowView: View {
                     }) {
                         Text("stop capture").foregroundColor(Color.black)
                     }.background(Color.red).cornerRadius(8)
+                        
                 }
                 ToolbarItem(placement: .principal) {
                     Button(action: {
@@ -188,6 +192,10 @@ struct CaptureWindowView: View {
 //        panel.allowedContentTypes = self.fileTypes
 //        panel.allowsOtherFileTypes = false
         if panel.runModal() == .OK {
+            if !(panel.url?.path.contains(".pcapng"))! {
+                showFailedToSaveAlert = true
+                return false
+            }
             filePath = panel.url?.path ?? ""
             return self.aDevice.savePcapFile(filePath)
         }

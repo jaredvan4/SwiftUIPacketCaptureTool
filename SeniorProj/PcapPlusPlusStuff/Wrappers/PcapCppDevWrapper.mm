@@ -165,7 +165,7 @@
 
 - (Boolean) savePcapFile : (NSString *) filePath {
     std::string filePathTemp = std::string([filePath UTF8String]);
-    pcpp::PcapFileWriterDevice writer(filePathTemp);
+    pcpp::PcapNgFileWriterDevice writer(filePathTemp);
     // try to open the file for writing
     if (!writer.open()){
         std::cerr << "Cannot open" << filePathTemp << "for writing" << std::endl;

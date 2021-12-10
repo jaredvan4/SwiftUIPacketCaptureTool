@@ -40,7 +40,7 @@
 
 - (NSInteger) getFullLength {
     pcpp::Packet *tempPacket = (pcpp::Packet*) packet;
-    return 1;
+    return tempPacket->getRawPacket()->getFrameLength();
 }
 
 - (NSString *)getRawData {
@@ -74,7 +74,7 @@
     if (linkLayerType == pcpp::LINKTYPE_ETHERNET ) {
         return @"Ethernet";
     }
-    if (linkLayerType == pcpp::LINKTYPE_LOOP) {
+    if (linkLayerType == pcpp::LINKTYPE_LOOP || linkLayerType == 0) {
         return @"Loopback";
     }
     return @"";
@@ -83,7 +83,6 @@
 - (NSString *) getFirstLayerType {
     pcpp::Packet *tempPacket = (pcpp::Packet*) packet;
     pcpp::ProtocolType aProtocolType =  tempPacket->getLastLayer()->getProtocol();
-    
     std::vector<std::string> list;
     tempPacket->toStringList(list);
     std::cout << "LAYERS------------\n";

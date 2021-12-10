@@ -12,10 +12,9 @@ struct FileView: View {
     @Binding var showPackets : Bool
     @State var currentlySelected : Int = 0
     var protocols = ["TCP", "SSH", "HTPP", "HTTP Request","HTTP", "HTTP Response","SSL","DNS","UDP","IPv6", "ARP", "ARP reply" ,"ARP request","IPv4","DHCP", "IMGP", "BGP", "IGMPv1" , "IGMPv2", "IGMPv3", "ICMP", "None"]
-    var sizes = [1,5,20,30, 50, 80, 100]
-    @State var selectedSize : Int = 1
-    @State var selectedFilterType = "None"
-   
+    var sizes = ["0"," 5","20","30", "50", "80", "100", "150", "200","300", "400", "500", "1000"]
+    @State var selectedSize : String = "0"
+    @State var selectedFilterType  = "None"
     var body: some View {
         GeometryReader { geometry in
             Divider()
@@ -49,7 +48,7 @@ struct FileView: View {
                                     Spacer()
                                 }.onTapGesture {
                                     currentlySelected = index
-                                }.background(currentlySelected == index || selectedFilterType == packets[index].getProtocolType() ? Color.blue : Color(red: 61/255, green: 58/255, blue: 58/255)).cornerRadius(3)
+                                }.background(currentlySelected == index || selectedFilterType == packets[index].getProtocolType() || packets[index].getFullLength() >= Int(selectedSize) ?? 0 && Int(selectedSize) ?? 0 > 0 ?  Color.blue : Color(red: 61/255, green: 58/255, blue: 58/255)).cornerRadius(3)
 
                             }
                         }
@@ -71,16 +70,16 @@ struct FileView: View {
                             }
                         }
                     }
-//                    ToolbarItem(placement: .principal) {
-//                        Text("Select by packet size:")
-//                    }
-//                    ToolbarItem(placement: .principal) {
-//                        Picker("Filter By size", selection: $selectedSize) {
-//                            ForEach(sizes, id: \.self) {
-//                                Text()
-//                            }
-//                        }
-//                    }
+                    ToolbarItem(placement: .principal) {
+                        Text("Select by size:")
+                    }
+                    ToolbarItem(placement: .principal) {
+                        Picker("Filter By size", selection: $selectedSize) {
+                            ForEach(sizes, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                    }
                     ToolbarItem(placement:.principal) {
                         Button(action: {
                             showPackets.toggle()}) {

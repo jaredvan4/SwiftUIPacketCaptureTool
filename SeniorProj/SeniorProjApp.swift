@@ -37,7 +37,7 @@ struct SeniorProjApp: App {
                 panel.allowsMultipleSelection = false
                 panel.canChooseDirectories = false
                 if panel.runModal() == .OK {
-                    if !(panel.url?.path.contains(".pcap"))! {
+                    if !(panel.url?.path.contains(".pcapng"))! {
                         loadedFromFile = false
                         showFailedToOpenAlert = true
                         return
