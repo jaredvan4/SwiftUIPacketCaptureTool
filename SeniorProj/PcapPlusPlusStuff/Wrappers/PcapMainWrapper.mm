@@ -23,12 +23,12 @@
 }
 
 
-//TODO: not the greates error handling
 
 - (NSMutableArray*) openPcapFile : (NSString*) filePath {
     std::string filePathTemp = std::string([filePath UTF8String]);
     pcpp::PcapNgFileReaderDevice reader(filePathTemp);
     NSMutableArray* anEmptyArray;
+    std::cout << "metadata found?" << reader.getCaptureApplication() << "\n";
     if (!reader.open()){
         std::cerr << "Cannot open" << filePathTemp << "for writing" << std::endl;
         return anEmptyArray;
@@ -39,7 +39,8 @@
             pcpp::RawPacket* tempRawCopy = new pcpp::RawPacket(aRawPacket);
             pcpp::Packet *tempPacket = new pcpp::Packet(tempRawCopy);
             packetVectorFromFile.push_back(tempPacket);
-        }
+            
+            }
         NSMutableArray <PcapCppPacketWrappper*>* packetArray = [NSMutableArray arrayWithCapacity: packetVectorFromFile.size()];
         for (pcpp::Packet *aPacket : packetVectorFromFile) {
             PcapCppPacketWrappper *newPacketWrapper = [[PcapCppPacketWrappper alloc] initWithPacket:aPacket];

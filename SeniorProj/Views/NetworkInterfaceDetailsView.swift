@@ -11,7 +11,7 @@ struct NetworkInterfaceDetailsView: View {
     let device : PcapCppDevWrapper
     @State var captureWindowIsOpen = false
     @Binding var captureWindowIsopenInOther : Bool
-    @ViewBuilder
+
     var body: some View {
         if captureWindowIsOpen {
             CaptureWindowView(device: device,captureWindowIsOpen: $captureWindowIsOpen).transition(.asymmetric(insertion: .opacity, removal: .opacity))
@@ -42,13 +42,13 @@ struct NetworkInterfaceDetailsView: View {
         
     }
     
-    //TODO: Fix alert to alert properly
-    func openDevice() -> Void {
+
+    func openDevice() -> Bool {
         let openedSuccessfully :Bool = device.openDev()
         if (!openedSuccessfully) {
-           
+           return true
         } else {
-            
+            return false
         }
     }
     
@@ -57,13 +57,6 @@ struct NetworkInterfaceDetailsView: View {
         device.stopCapture()
         captureWindowIsOpen.toggle()
         captureWindowIsopenInOther.toggle()
-        //        var packetArray : [PcapCppPacketWrappper] =  device.getPacketArray() as! [PcapCppPacketWrappper];
-        //        print(packetArray.count)
+
     }
 }
-
-//struct NetworkInterfaceDetailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NetworkInterfaceDetailsView()
-//    }
-//}

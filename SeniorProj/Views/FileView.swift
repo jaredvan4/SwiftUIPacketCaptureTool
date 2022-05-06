@@ -93,17 +93,13 @@ struct FileView: View {
                     GeometryReader { detailsGeometry in
                         HSplitView {
                             GroupBox {
-                                Text (" Frame length: \(String(packets[self.currentlySelected].getFrameLength())) ")
-                                Text("Link type : \(String(packets[self.currentlySelected].getLinkType()))")
-                                LayerView(layers: packets[currentlySelected].getDescriptionAsLayers() as! [NSString])
+                                LayerView(frameLength:packets[self.currentlySelected].getFrameLength() , linkType: packets[self.currentlySelected].getLinkType(),layers: packets[currentlySelected].getDescriptionAsLayers() as! [NSString])
                                 Spacer()
                                 
                             }.frame(width: detailsGeometry.size.width * 0.75)
-//                            GroupBox(label: Label("Packet description",systemImage: "").labelStyle(.titleOnly)) {
                             Group {
-                                Text(packets[self.currentlySelected].getDescription()).font(.system(size: 15)).frame(height: detailsGeometry.size.height)
+                                DescriptionBox(description: packets[self.currentlySelected].getDescription()).frame(height: detailsGeometry.size.height)
                             }
-//                            }.frame(width: detailsGeometry.size.width * 0.38, height:detailsGeometry.size.height)
                         }
                     }
                 }.frame(width:geometry.size.width, height: geometry.size.height * 0.5)

@@ -28,6 +28,7 @@ struct CaptureWindowView: View {
     @State private var showDidNotStartCapturingAlert = false
     @Binding var captureWindowIsOpen: Bool
     var body: some View {
+        
         if showPackets && !captureActive {
             GroupBox() {
                 FileView(packets: aDevice.getPacketArray() as! [PcapCppPacketWrappper], showPackets: $showPackets)
@@ -168,9 +169,11 @@ struct CaptureWindowView: View {
         self.packetManager?.stopTimerFunction()
         
     }
+    
     func invalidateTimer () -> Void {
         self.timer?.invalidate()
     }
+    
     func startCapture () -> Bool {
         if (aDevice.openDev()) {
             captureActive = true
@@ -185,7 +188,7 @@ struct CaptureWindowView: View {
         self.aDevice.emptyArray()
     }
     
-    //TODO: Exclude user from saving any filetype besides .pcapng
+    //TODO: Exclude user from saving any filetype besides .pcapng (weak input validation has been implemented)
     func saveAsFile () -> Bool {
         var filePath = ""
         let panel = NSSavePanel()

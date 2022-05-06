@@ -96,28 +96,8 @@
     [self performSelectorInBackground:@selector(asyncCaptureStart) withObject:nil];
     captureActive = true;
     return;
-//    pcpp::RawPacketVector packetVector;
-//    tempDev->startCapture(packetVector);
-//    pcpp::multiPlatformSleep(6);
-//    tempDev->stopCapture();
-//    for (pcpp::RawPacket *packet : packetVector) {
-//                pcpp::Packet aPacket = packet;
-//                printf("len of packet data: %u\n", packet->getRawDataLen());
-//            }
-//    tempDev->close();
-//    tempDev->startCapture([self onPacketArrive], void *onPacketArrivesUserCookie);
-    //    pcpp::RawPacketVector packetVector;
-//    if (tempDev->isOpened()) {
-//        tempDev->startCapture(packetVector);
-//        sleep(4);
-//        tempDev->stopCapture();
-//        for (pcpp::RawPacket *packet : packetVector) {
-//            pcpp::Packet aPacket = packet;
-//            printf("len of packet data: %u\n", packet->getRawDataLen());
-//        }
-//        tempDev->close();
-//    }
-    
+
+
 }
 
 
@@ -148,6 +128,7 @@
     pcpp::Packet parsedPacket ((pcpp::RawPacket*) packetArrived);
 }
 
+//hand nsobj over to corefoundation framework from obj c land
 - (void) asyncCaptureStart {
     pcpp::PcapLiveDevice *tempDev = (pcpp::PcapLiveDevice*) dev;
     tempDev->startCapture(onPacketArrives,(void *)CFBridgingRetain(self));
@@ -171,7 +152,7 @@
         std::cerr << "Cannot open" << filePathTemp << "for writing" << std::endl;
         return false;
     }
-//   try to open the file for writing
+
     for (PcapCppPacketWrappper* aPacketWrapper in packetArray) {
         std::cout << "writing packets\n";
         pcpp::RawPacket *aPacketPtr = (pcpp::RawPacket*)aPacketWrapper.getRawPacket;
@@ -182,9 +163,9 @@
     return true;
 }
 
-
-
+//Bridge pointer back to Obj c type
 //Add to packet array when packet arrives
+//Note : Temp raw should be free'd by Packet class deconstructor automatically
  static void onPacketArrives (pcpp::RawPacket *rawPacket, pcpp::PcapLiveDevice *dev, void *cookie) {
      PcapCppDevWrapper *aDev = (__bridge PcapCppDevWrapper*)cookie;
      pcpp::RawPacket* tempRawCopy = new pcpp::RawPacket;
