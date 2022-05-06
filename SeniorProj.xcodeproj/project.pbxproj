@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7F047F4026FA5C81001E7276 /* NetworkInterfaceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F047F3F26FA5C81001E7276 /* NetworkInterfaceDetailsView.swift */; };
-		7F121C6827AF363600BED97C /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F121C6727AF363600BED97C /* Storyboard.storyboard */; };
 		7F3D262F2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3D262E2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift */; };
 		7F3F2F92275B2BB6001015B4 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F2F91275B2BB6001015B4 /* FileView.swift */; };
 		7F40F5832710E6B800FE8995 /* PcapCppPacketWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F40F5822710E6B800FE8995 /* PcapCppPacketWrapper.mm */; };
@@ -67,7 +66,6 @@
 
 /* Begin PBXFileReference section */
 		7F047F3F26FA5C81001E7276 /* NetworkInterfaceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterfaceDetailsView.swift; sourceTree = "<group>"; };
-		7F121C6727AF363600BED97C /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		7F3D262E2735E5390045F4DB /* GlobalIIsCaptureWindowIsOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalIIsCaptureWindowIsOpen.swift; sourceTree = "<group>"; };
 		7F3F2F91275B2BB6001015B4 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
 		7F40F5822710E6B800FE8995 /* PcapCppPacketWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PcapCppPacketWrapper.mm; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 		7F49994226F51D81002DB095 = {
 			isa = PBXGroup;
 			children = (
-				7F121C6727AF363600BED97C /* Storyboard.storyboard */,
 				7F929C28273D918800D82B69 /* README.md */,
 				7F49994D26F51D81002DB095 /* SeniorProj */,
 				7F49996026F51D82002DB095 /* SeniorProjTests */,
@@ -404,7 +401,6 @@
 			files = (
 				7F49995626F51D82002DB095 /* Preview Assets.xcassets in Resources */,
 				7F49995326F51D82002DB095 /* Assets.xcassets in Resources */,
-				7F121C6827AF363600BED97C /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
