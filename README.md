@@ -9,7 +9,7 @@
 "*)
  * macOS Big Sur or higher (Assuming one is targeting arm64)
 # **Setup**
- * To get started, install the PcapPlusPlus pre compiled compiled binaries using Homebrew by running the command "*brew install pcapplusplus*"
+ * To get started, install the PcapPlusPlus pre-compiled binaries using Homebrew by running the command "*brew install pcapplusplus*"
 #### **Note:** If you are having difficulties building the project using the pre-compiled binaries, try building PcapPlusPlus from source, which is covered [here](https://pcapplusplus.github.io/docs/install/build-source/macos)
  * Clone project to local, and open in Xcode, or choose "clone from existing project when opening up Xcode"
  * In the project settings, under "header search paths" add PcapPlusPlus' "include" directory (the location varies depending on whether you compiled from src or installed pre-compiled binaries)
